@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Post">
+    <insert id="upload" parameterType="post">
+        INSERT INTO post(post_title, user_id, post_contents)
+        VALUES (#{postTitle}, #{userId}, #{postContents})
+    </insert>
+
+    <update id="edit" parameterType="post">
+        UPDATE post
+        SET post_title = #{postTitle}, post_contents = #{postContents}
+        WHERE post_id = #{postId}
+    </update>
+
+    <delete id="delete" parameterType="post">
+        DELETE FROM post
+        WHERE post_id = #{postId}
+    </delete>
+
+    <select id="list" parameterType="int" resultType="post">
+        SELECT *
+        FROM post AS P
+        JOIN(
+            SELECT post_id
+            FROM post
+            ORDER BY post_id DESC
+            LIMIT #{startNumber}, 10
+        ) AS TEMP
+        ON TEMP.post_id = P.post_id
+        ORDER BY P.post_id DESC
+    </select>
+
+    <select id="read" resultType="post">
+        SELECT post_title, user_id, post_id, post_contents
+        FROM post
+        WHERE post_id = #{postId}
+    </select>
+</mapper>

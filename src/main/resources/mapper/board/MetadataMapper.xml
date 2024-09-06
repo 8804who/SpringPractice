@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Metadata">
+    <update id="upload">
+        UPDATE metadata
+        SET post_count = post_count+1
+    </update>
+
+    <update id="delete">
+        UPDATE metadata
+        SET post_count = post_count-1
+    </update>
+
+    <select id="postCount" resultType="metadata">
+        SELECT post_count
+        FROM metadata
+    </select>
+</mapper>
