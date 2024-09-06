@@ -21,9 +21,8 @@
 
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script>
-        var header = $("meta[name='_csrf_header']").attr("content");
         var token = $("meta[name='_csrf']").attr("content");
-
+        var header = $("meta[name='_csrf_header']").attr("content");
 
         function quit(){
             location.href = "/";
@@ -55,10 +54,10 @@
                 type: 'post',
                 data: JSON.stringify(data),
                 contentType: 'application/json',
-                beforeSend: function (xhr){
+                beforeSend: function(xhr) {
                     xhr.setRequestHeader(header, token);
                 },
-                success: function(){
+                success: function(res){
                     cs();
                 },
                 error: function(){
@@ -73,6 +72,7 @@
 <div class="wrapper" style="margin-left: 30%">
     <div class="Post" style="width: 100%; height: 80%">
         <form method="post" style="width: 100%; height: 100%">
+<%--            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"> &lt;%&ndash; csrf 토큰 &ndash;%&gt;--%>
             <input type="text" name="postId", id="postId" value="${post.postId}" style = "display: none;"/>
             <div class="Title" style="width: 50%; height: 16%; margin: 3% auto;">
                 <input type="text" name="postTitle" value="${post.postTitle}" style="border: none; width: 100%; height: 100%; font-size: 30px; font-weight: bold; background: rgba(233,233,233,0.17)" readonly/>
@@ -127,6 +127,9 @@
                                 type: 'post',
                                 data: JSON.stringify(data),
                                 contentType: 'application/json',
+                                beforeSend: function(xhr) {
+                                    xhr.setRequestHeader(header, token);
+                                },
                                 success: function(){
                                     cs();
                                 },
@@ -145,6 +148,9 @@
                             type: 'post',
                             data: JSON.stringify(data),
                             contentType: 'application/json',
+                            beforeSend: function(xhr) {
+                                xhr.setRequestHeader(header, token);
+                            },
                             success: function(){
                                 cs();
                             },
