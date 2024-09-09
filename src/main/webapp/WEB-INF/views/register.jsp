@@ -19,13 +19,13 @@
         }
     </style>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <title>로그인</title>
+    <title>회원가입</title>
 <body>
 <div class="wrapper">
-    <form method="post" id="register" action="${pageContext.request.contextPath}/login" style="width: 100%; height: 100%">
+    <form method="post" id="register" action="${pageContext.request.contextPath}/register" style="width: 100%; height: 100%">
         <input type="text" name="username" placeholder="Username"/>
         <input type="password" name="password" placeholder="Password"/>
-        <input type="submit" value="로그인"/>
+        <input type="submit" value="회원가입"/>
     </form>
 </div>
 </body>

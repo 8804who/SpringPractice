@@ -22,6 +22,9 @@
     <title>게시판</title>
 <body>
     <div class="wrapper">
+        <div class="userInfo" style="margin-left: 70%">
+            <%@ include file="user_info.jsp" %>
+        </div>
         <div class="pageTitle" style="width: 100%; height: 15%; margin-left: 20%">
             <p style="width: 80%; height: 10%; font-size: 45px; font-weight: bolder; text-align: center;">게시판</p>
         </div>

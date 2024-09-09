@@ -70,6 +70,9 @@
 </head>
 <body>
 <div class="wrapper" style="margin-left: 30%">
+    <div class="userInfo" style="margin-left: 70%">
+        <%@ include file="user_info.jsp" %>
+    </div>
     <div class="Post" style="width: 100%; height: 80%">
         <form method="post" style="width: 100%; height: 100%">
 <%--            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"> &lt;%&ndash; csrf 토큰 &ndash;%&gt;--%>
