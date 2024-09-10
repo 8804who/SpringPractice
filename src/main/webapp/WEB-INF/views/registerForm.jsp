@@ -23,11 +23,12 @@
 <body>
 <div class="wrapper">
     <form method="post" id="register" action="${pageContext.request.contextPath}/register" style="width: 100%; height: 100%">
-        <input type="text" name="username" placeholder="Username"/>
-        <input type="password" name="password" placeholder="Password"/>
+        <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}">
+        <input type="text" name="userId" placeholder="UserID"/>
+        <input type="password" name="pw" placeholder="Password"/>
 
         <label for="role">회원 등급</label>
-        <select name="user_role" id="role">
+        <select name="userRole" id="role">
             <option value="member">일반 회원</option>
             <option value="admin">관리자</option>
         </select>

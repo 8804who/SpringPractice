@@ -24,8 +24,8 @@
 <div class="wrapper">
     <form method="post" id="login" action="${pageContext.request.contextPath}/loginCheck" style="width: 100%; height: 100%">
         <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}">
-        <input type="text" name="username" placeholder="Username"/>
-        <input type="password" name="password" placeholder="Password"/>
+        <input type="text" name="userId" placeholder="UserID"/>
+        <input type="password" name="pw" placeholder="Password"/>
         <label for="remember-me" style>로그인 유지</label>
         <input type="checkbox" id="remember-me" name="remember-me" />
         <input type="submit" value="로그인"/>

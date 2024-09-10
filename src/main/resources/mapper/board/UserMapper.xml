@@ -6,4 +6,9 @@
         FROM user_table
         WHERE user_id = #{userId}
     </select>
+
+    <insert id="register" parameterType="CustomUserDetails">
+        INSERT INTO user_table(user_id, pw, user_role)
+        VALUES(#{userId}, #{pw}, #{userRole})
+    </insert>
 </mapper>

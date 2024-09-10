@@ -20,4 +20,8 @@ public class CustomUserDetailsService implements UserDetailsService {
         }
         return users;
     }
+
+    public void register(CustomUserDetails customUserDetails) {
+        userRepository.register(customUserDetails);
+    }
 }

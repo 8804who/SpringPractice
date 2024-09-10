@@ -29,6 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/post/read",
                         "/loginForm",
                         "/loginCheck",
+                        "/registerForm",
                         "/register"
                 ).permitAll() // 해당 페이지는 인증 없이 허용
                 .anyRequest().authenticated() // 이외 페이지는 모두 인증 필요
@@ -38,8 +39,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/loginForm")
                 .loginProcessingUrl("/loginCheck")
-                .usernameParameter("username")
-                .passwordParameter("password")
+                .usernameParameter("userId")
+                .passwordParameter("pw")
                 .defaultSuccessUrl("/")
         ;
 
@@ -51,9 +52,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         ;
 
         http
-                .rememberMe()        
+                .rememberMe()
                 .key("내가 만든 쿠키")
-                .rememberMeParameter("remember-me")        
+                .rememberMeParameter("remember-me")
                 .tokenValiditySeconds(86400 * 7)
                 .userDetailsService(customUserDetailsService)
         ;
