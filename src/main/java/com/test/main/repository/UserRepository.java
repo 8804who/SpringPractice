@@ -1,5 +1,6 @@
-package com.test.main.security;
+package com.test.main.repository;
 
+import com.test.main.security.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
