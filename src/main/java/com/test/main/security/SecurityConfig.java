@@ -13,6 +13,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private CustomUserDetailsService customUserDetailsService;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -47,5 +49,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .logoutSuccessUrl("/")
                         .invalidateHttpSession(true))
         ;
+
+        http
+                .rememberMe()        
+                .key("내가 만든 쿠키")        
+                .rememberMeParameter("remember-me")        
+                .tokenValiditySeconds(86400 * 7)
+                .userDetailsService(customUserDetailsService)
+        ;
+        
     }
 }
