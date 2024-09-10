@@ -23,4 +23,9 @@ public class MainController {
         model.addAttribute("page", page);
         return "list";
     }
+
+    @GetMapping("/loginForm")
+    public String loginForm(){ // 로그인 페이지
+        return "loginForm";
+    }
 }

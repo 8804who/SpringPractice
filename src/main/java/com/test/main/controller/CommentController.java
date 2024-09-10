@@ -14,7 +14,6 @@ public class CommentController {
 
     @PostMapping("/upload")
     public @ResponseBody String uploadComment(@RequestBody CommentDto commentDto){ // 댓글 업로드
-        System.out.println("11111");
         commentService.upload(commentDto);
         return null;
     }

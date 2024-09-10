@@ -22,7 +22,8 @@
     <title>로그인</title>
 <body>
 <div class="wrapper">
-    <form method="post" id="register" action="${pageContext.request.contextPath}/login" style="width: 100%; height: 100%">
+    <form method="post" id="login" action="${pageContext.request.contextPath}/loginCheck" style="width: 100%; height: 100%">
+        <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}">
         <input type="text" name="username" placeholder="Username"/>
         <input type="password" name="password" placeholder="Password"/>
         <input type="submit" value="로그인"/>

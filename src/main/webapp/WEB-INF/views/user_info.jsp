@@ -8,8 +8,10 @@
 </head>
 <body>
     <div class="user_info_box">
-        <span>ID/</span>
-        <span>마이페이지/</span>
+        <span>ID</span>
+        <span>|</span>
+        <span>마이페이지</span>
+        <span>|</span>
         <span>로그아웃</span>
     </div>
 </body>
