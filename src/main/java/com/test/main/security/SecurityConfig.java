@@ -52,11 +52,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .rememberMe()        
-                .key("내가 만든 쿠키")        
+                .key("내가 만든 쿠키")
                 .rememberMeParameter("remember-me")        
                 .tokenValiditySeconds(86400 * 7)
                 .userDetailsService(customUserDetailsService)
         ;
-        
     }
 }
