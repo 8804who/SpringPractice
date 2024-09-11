@@ -5,14 +5,36 @@
 <head>
     <meta charset="UTF-8">
     <title>user_info</title>
+    <script>
+        var token = $("meta[name='_csrf']").attr("content");
+        var header = $("meta[name='_csrf_header']").attr("content");
+
+        function login(){
+            location.href = "/loginForm";
+        }
+
+        function logout(){
+            location.href = "/logout";
+        }
+
+        function register(){
+            location.href = "/registerForm";
+        }
+    </script>
 </head>
 <body>
     <div class="user_info_box">
-        <span>ID</span>
-        <span>|</span>
-        <span>마이페이지</span>
-        <span>|</span>
-        <span>로그아웃</span>
+        <c:if test="${principal == null}" >
+            <span onclick="register()">회원가입</span>
+            <span>|</span>
+            <span onclick="login()">로그인</span>
+        </c:if>
+
+        <c:if test="${principal != null}" >
+            <span>${principal.getName()}</span>
+            <span>|</span>
+            <span onclick="logout()">로그아웃</span>
+        </c:if>
     </div>
 </body>
 </html>

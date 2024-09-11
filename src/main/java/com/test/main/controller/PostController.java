@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 @Controller
 @RequiredArgsConstructor
 @RequestMapping(value = "/post")
@@ -18,19 +20,21 @@ public class PostController {
     private final MetadataService metadataService;
 
     @GetMapping("/read")
-    public String readPost(PostDto postDto, Model model) { // 게시글 페이지
+    public String readPost(PostDto postDto, Model model, Principal principal) { // 게시글 페이지
         model.addAttribute("post", postService.read(postDto));
         model.addAttribute("commentList", commentService.list(postDto.getPostId()));
         return "read";
     }
     
     @GetMapping("/write")
-    public String writePost(){ // 글 작성 페이지
+    public String writePost(Model model, Principal principal){ // 글 작성 페이지
+        model.addAttribute("principal", principal);
         return "write";
     }
 
     @GetMapping("/edit")
-    public String editPost(PostDto postDto, Model model){ // 글 수정 페이지
+    public String editPost(PostDto postDto, Model model, Principal principal){ // 글 수정 페이지
+        model.addAttribute("principal", principal);
         model.addAttribute("post", postService.read(postDto));
         return "edit";
     }
