@@ -24,4 +24,8 @@ public class CustomUserDetailsService implements UserDetailsService {
     public void register(CustomUserDetails customUserDetails) {
         userRepository.register(customUserDetails);
     }
+
+    public int duplicateCheck(String userId) {
+        return userRepository.duplicateCheck(userId);
+    }
 }

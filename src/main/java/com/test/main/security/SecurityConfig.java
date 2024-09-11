@@ -30,7 +30,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/loginForm",
                         "/loginCheck",
                         "/registerForm",
-                        "/register"
+                        "/register",
+                        "/duplicateCheck"
                 ).permitAll() // 해당 페이지는 인증 없이 허용
                 .anyRequest().authenticated() // 이외 페이지는 모두 인증 필요
         ;

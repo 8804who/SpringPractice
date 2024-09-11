@@ -19,4 +19,8 @@ public class UserRepository {
     public void register(CustomUserDetails customUserDetails) {
         sql.insert("User.register", customUserDetails);
     }
+
+    public int duplicateCheck(String userId) {
+        return sql.selectOne("User.duplicateCheck", userId);
+    }
 }

@@ -44,4 +44,9 @@ public class MainController {
         customUserDetailsService.register(customUserDetails);
         return "redirect:/loginForm";
     }
+
+    @PostMapping("/duplicateCheck")
+    public @ResponseBody int duplicateCheck(@RequestParam String userId) {
+        return customUserDetailsService.duplicateCheck(userId);
+    }
 }

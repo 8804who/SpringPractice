@@ -11,4 +11,10 @@
         INSERT INTO user_table(user_id, pw, user_role)
         VALUES(#{userId}, #{pw}, #{userRole})
     </insert>
+
+    <select id="duplicateCheck" parameterType="String" resultType="int">
+        SELECT COUNT(*)
+        FROM user_table
+        WHERE user_id=#{userId}
+    </select>
 </mapper>
