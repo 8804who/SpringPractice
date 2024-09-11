@@ -57,9 +57,9 @@
 <div class="wrapper">
     <form method="post" id="register" action="${pageContext.request.contextPath}/register" style="width: 100%; height: 100%">
         <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}">
-        <input type="text" name="userId" onkeydown="disableSubmit()" id="userId" placeholder="UserID" pattern=".*\S+.*" required/>
+        <input type="text" name="userId" onkeydown="disableSubmit()" id="userId" placeholder="UserID" pattern=".*\S+.*" maxlength="10" required/>
         <button type="button" onclick="checkId()">중복 체크</button>
-        <input type="password" name="pw" placeholder="Password" pattern=".*\S+.*" required/>
+        <input type="password" name="pw" placeholder="Password" pattern=".*\S+.*" maxlength="10" required/>
 
         <label for="role">회원 등급</label>
         <select name="userRole" id="role">
