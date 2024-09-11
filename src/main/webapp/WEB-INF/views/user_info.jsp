@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="kr">
@@ -24,17 +25,17 @@
 </head>
 <body>
     <div class="user_info_box">
-        <c:if test="${principal == null}" >
+        <sec:authorize access="isAnonymous()">
             <span onclick="register()">회원가입</span>
             <span>|</span>
             <span onclick="login()">로그인</span>
-        </c:if>
+        </sec:authorize>
 
-        <c:if test="${principal != null}" >
+        <sec:authorize access="isAuthenticated()">
             <span>${principal.getName()}</span>
             <span>|</span>
             <span onclick="logout()">로그아웃</span>
-        </c:if>
+        </sec:authorize>
     </div>
 </body>
 </html>

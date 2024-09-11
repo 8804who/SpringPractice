@@ -57,7 +57,7 @@
                 beforeSend: function(xhr) {
                     xhr.setRequestHeader(header, token);
                 },
-                success: function(res){
+                success: function(){
                     cs();
                 },
                 error: function(){
@@ -76,7 +76,7 @@
     <div class="Post" style="width: 100%; height: 80%">
         <form method="post" style="width: 100%; height: 100%">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"> <%-- csrf 토큰 --%>
-            <input type="text" name="postId", id="postId" value="${post.postId}" style = "display: none;"/>
+            <input type="text" name="postId" id="postId" value="${post.postId}" style = "display: none;"/>
             <div class="Title" style="width: 50%; height: 16%; margin: 3% auto;">
                 <input type="text" name="postTitle" value="${post.postTitle}" style="border: none; width: 100%; height: 100%; font-size: 30px; font-weight: bold; background: rgba(233,233,233,0.17)" readonly/>
             </div>
