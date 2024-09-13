@@ -100,7 +100,12 @@
     <div class="Comment" style="width: 100%; height: 20%">
         <p style="width: 50%; height: 30%; margin: 0% auto; font-size: 20px; font-weight: bold">${commentList.size()}개의 댓글</p>
         <div class="commentWrite" style="width: 50%; height: 70%; margin: 1% auto;">
-            <input type="text" id="userId" placeholder="사용자 ID를 입력하세요." style="width: 70%; height: 30%; border: none; font-size: 15px; background: rgba(233,233,233,0.17);"/>
+            <sec:authorize access="isAnonymous()">
+                <input type="text" id="userId" value="로그인을 해주세요" style="width: 70%; height: 30%; border: none; font-size: 15px; background: rgba(233,233,233,0.17);" readonly/>
+            </sec:authorize>
+            <sec:authorize access="isAuthenticated()">
+                <input type="text" id="userId" value="${principal.getName()}" style="width: 70%; height: 30%; border: none; font-size: 15px; background: rgba(233,233,233,0.17);" readonly/>
+            </sec:authorize>
             <button type="button" id="commentSubmit" onclick="comment_upload()" style="width: 28%; height: 30%; background: skyblue; font-size: 15px; background: rgba(233,233,233,0.17);">댓글 작성</button>
             <textarea id="commentContents" placeholder="댓글을 작성하세요" style="width: 100%; height: 70%; resize: none; border: none; font-size: 20px; background: rgba(233,233,233,0.17); margin-top: 1%" maxlength="100"></textarea>
         </div>

@@ -21,6 +21,7 @@ public class PostController {
 
     @GetMapping("/read")
     public String readPost(PostDto postDto, Model model, Principal principal) { // 게시글 페이지
+        model.addAttribute("principal", principal);
         model.addAttribute("post", postService.read(postDto));
         model.addAttribute("commentList", commentService.list(postDto.getPostId()));
         return "read";

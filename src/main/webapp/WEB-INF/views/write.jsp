@@ -35,7 +35,7 @@
                 </div>
 
                 <div class="UserID" style="width: 50%; height:8%; margin: 3% auto;">
-                    <input name="userId" type="text" maxlength="10" placeholder="사용자 ID를 입력하세요." style="border: none; width: 100%; height: 100%; font-size: 15px; background: rgba(233,233,233,0.17)" pattern=".*\S+.*" required/>
+                    <input name="userId" type="text" maxlength="10" value="${principal.getName()}" style="border: none; width: 100%; height: 100%; font-size: 15px; background: rgba(233,233,233,0.17)" pattern=".*\S+.*" readonly required/>
                 </div>
 
                 <div class="Contents" style="width: 50%; height: 50%; margin: 3% auto;">
