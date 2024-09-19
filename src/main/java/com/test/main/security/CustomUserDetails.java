@@ -4,11 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,12 +15,11 @@ public class CustomUserDetails implements UserDetails {
     private String userId;
     private String pw;
     private String userRole;
+    private List<GrantedAuthority> authList;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        ArrayList<GrantedAuthority> authList = new ArrayList<GrantedAuthority>();
-        //authList.add(new SimpleGrantedAuthority(auth));
-        return authList;
+        return this.authList;
     }
 
     @Override

@@ -1,24 +1,43 @@
 package com.test.main.security;
 
+import com.test.main.dto.AuthorityDto;
+import com.test.main.repository.AuthorityRepository;
 import com.test.main.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
     private final UserRepository userRepository;
+    private final AuthorityRepository authorityRepository;
 
     @Override
     public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
-        CustomUserDetails users = userRepository.getUserById(userId);
-        if(users == null){
+        CustomUserDetails user = userRepository.getUserById(userId);
+        if(user == null){
             throw new UsernameNotFoundException("존재하지 않는 계정입니다.");
         }
-        return users;
+        user.setAuthList(getUserAuthorities(user.getUserRole()));
+        return user;
+    }
+
+    public List<GrantedAuthority> getUserAuthorities(String userRole)
+    {
+        List<AuthorityDto> authorities = authorityRepository.getUserAuthorities(userRole);
+        List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+        for (AuthorityDto authority : authorities) {
+            grantedAuthorities.add(new SimpleGrantedAuthority(authority.getAuthorityName()));
+        }
+        return grantedAuthorities;
     }
 
     public void register(CustomUserDetails customUserDetails) {
