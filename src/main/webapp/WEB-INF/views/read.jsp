@@ -91,8 +91,12 @@
 
             <div class="Button" style="width: 50%; height: 8%; margin: 3% auto;">
                 <button type="button" onclick="quit()" style="width: 32%; height: 100%; background: skyblue; font-size: 30px; background: rgba(233,233,233,0.17);">나가기</button>
-                <button type="button" onclick="edit()" style="width: 32%; height: 100%; background: skyblue; font-size: 30px; background: rgba(233,233,233,0.17);">수정하기</button>
-                <button type="submit" formaction="/post/delete" style="width: 32%; height: 100%; background: skyblue; font-size: 30px; background: rgba(233,233,233,0.17);">삭제하기</button>
+                <sec:authorize access="isAuthenticated()">
+                    <c:if test="${post.userId == principal.getName()}">
+                        <button type="button" onclick="edit()" style="width: 32%; height: 100%; background: skyblue; font-size: 30px; background: rgba(233,233,233,0.17);">수정하기</button>
+                        <button type="submit" formaction="/post/delete" style="width: 32%; height: 100%; background: skyblue; font-size: 30px; background: rgba(233,233,233,0.17);">삭제하기</button>
+                    </c:if>
+                </sec:authorize>
             </div>
         </form>
     </div>
@@ -170,8 +174,12 @@
                 </script>
                 <input type="text" id="commentId_${comment.commentId}" style = "display: none;"/>
                 <input type="text" id="userId_${comment.commentId}" value="${comment.userId}" style="border: none; width: 50%; height: 60%; font-size: 12px; font-weight: bold; background: rgba(233,233,233,0.17)" readonly/>
-                <button type="button" id="commentEdit_${comment.commentId}" style="width: 23%; height: 60%; background: skyblue; font-size: 10px; background: rgba(233,233,233,0.17);">댓글 수정</button>
-                <button type="button" id="commentDelete_${comment.commentId}" style="width: 23%; height: 60%; background: skyblue; font-size: 10px; background: rgba(233,233,233,0.17);">댓글 삭제</button>
+                <sec:authorize access="isAuthenticated()">
+                    <c:if test="${comment.userId == principal.getName()}">
+                        <button type="button" id="commentEdit_${comment.commentId}" style="width: 23%; height: 60%; background: skyblue; font-size: 10px; background: rgba(233,233,233,0.17);">댓글 수정</button>
+                        <button type="button" id="commentDelete_${comment.commentId}" style="width: 23%; height: 60%; background: skyblue; font-size: 10px; background: rgba(233,233,233,0.17);">댓글 삭제</button>
+                    </c:if>
+                </sec:authorize>
                 <textarea id="commentContents_${comment.commentId}" style="width: 100%; height: 100%; resize: none; border: none; font-size: 12px; background: rgba(233,233,233,0.17);" readonly>${comment.commentContents}</textarea>
             </c:forEach>
         </div>
