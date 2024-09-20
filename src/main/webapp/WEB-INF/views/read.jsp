@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="kr">
@@ -6,6 +7,10 @@
     <meta charset="UTF-8">
     <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
     <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
+
+    <sec:authorize access="isAuthenticated()" var="authenticated"/>
+    <sec:authorize access="hasAuthority('delete_anything')" var="delete_anything"/>
+    <sec:authorize access="hasAuthority('modify_anything')" var="modify_anything"/>
 
     <style>
         html,
@@ -37,11 +42,11 @@
         }
 
         function comment_upload(){
-            if ($("#userId").val().trim()===""){
-                alert("유저명을 입력하세요");
+            if ('${authenticated}' === false)
+            {
+                alert("로그인하세요");
                 return false;
             }
-
             if ($("#commentContents").val().trim()===""){
                 alert("댓글 내용을 입력하세요");
                 return false;
@@ -91,12 +96,14 @@
 
             <div class="Button" style="width: 50%; height: 8%; margin: 3% auto;">
                 <button type="button" onclick="quit()" style="width: 32%; height: 100%; background: skyblue; font-size: 30px; background: rgba(233,233,233,0.17);">나가기</button>
-                <sec:authorize access="isAuthenticated()">
-                    <c:if test="${post.userId == principal.getName()}">
+                <c:if test="${authenticated}">
+                    <c:if test="${post.userId == principal.getName() || modify_anything}">
                         <button type="button" onclick="edit()" style="width: 32%; height: 100%; background: skyblue; font-size: 30px; background: rgba(233,233,233,0.17);">수정하기</button>
+                    </c:if>
+                    <c:if test="${post.userId == principal.getName() || delete_anything}">
                         <button type="submit" formaction="/post/delete" style="width: 32%; height: 100%; background: skyblue; font-size: 30px; background: rgba(233,233,233,0.17);">삭제하기</button>
                     </c:if>
-                </sec:authorize>
+                </c:if>
             </div>
         </form>
     </div>
@@ -104,12 +111,12 @@
     <div class="Comment" style="width: 100%; height: 20%">
         <p style="width: 50%; height: 30%; margin: 0% auto; font-size: 20px; font-weight: bold">${commentList.size()}개의 댓글</p>
         <div class="commentWrite" style="width: 50%; height: 70%; margin: 1% auto;">
-            <sec:authorize access="isAnonymous()">
+            <c:if test="${!authenticated}">
                 <input type="text" id="userId" value="로그인을 해주세요" style="width: 70%; height: 30%; border: none; font-size: 15px; background: rgba(233,233,233,0.17);" readonly/>
-            </sec:authorize>
-            <sec:authorize access="isAuthenticated()">
+            </c:if>
+            <c:if test="${authenticated}">
                 <input type="text" id="userId" value="${principal.getName()}" style="width: 70%; height: 30%; border: none; font-size: 15px; background: rgba(233,233,233,0.17);" readonly/>
-            </sec:authorize>
+            </c:if>
             <button type="button" id="commentSubmit" onclick="comment_upload()" style="width: 28%; height: 30%; background: skyblue; font-size: 15px; background: rgba(233,233,233,0.17);">댓글 작성</button>
             <textarea id="commentContents" placeholder="댓글을 작성하세요" style="width: 100%; height: 70%; resize: none; border: none; font-size: 20px; background: rgba(233,233,233,0.17); margin-top: 1%" maxlength="100"></textarea>
         </div>
@@ -174,12 +181,14 @@
                 </script>
                 <input type="text" id="commentId_${comment.commentId}" style = "display: none;"/>
                 <input type="text" id="userId_${comment.commentId}" value="${comment.userId}" style="border: none; width: 50%; height: 60%; font-size: 12px; font-weight: bold; background: rgba(233,233,233,0.17)" readonly/>
-                <sec:authorize access="isAuthenticated()">
-                    <c:if test="${comment.userId == principal.getName()}">
+                <c:if test="${authenticated}">
+                    <c:if test="${comment.userId == principal.getName() || modify_anything}">
                         <button type="button" id="commentEdit_${comment.commentId}" style="width: 23%; height: 60%; background: skyblue; font-size: 10px; background: rgba(233,233,233,0.17);">댓글 수정</button>
+                    </c:if>
+                    <c:if test="${comment.userId == principal.getName() || delete_anything}">
                         <button type="button" id="commentDelete_${comment.commentId}" style="width: 23%; height: 60%; background: skyblue; font-size: 10px; background: rgba(233,233,233,0.17);">댓글 삭제</button>
                     </c:if>
-                </sec:authorize>
+                </c:if>
                 <textarea id="commentContents_${comment.commentId}" style="width: 100%; height: 100%; resize: none; border: none; font-size: 12px; background: rgba(233,233,233,0.17);" readonly>${comment.commentContents}</textarea>
             </c:forEach>
         </div>
