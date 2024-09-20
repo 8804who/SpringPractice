@@ -5,6 +5,7 @@ import com.test.main.service.CommentService;
 import com.test.main.service.MetadataService;
 import com.test.main.service.PostService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -47,12 +48,14 @@ public class PostController {
         return "redirect:/";
     }
 
+    @PreAuthorize("hasAuthority('modify_anything') or #postDto.userId == principal.userId")
     @PostMapping("/update")
     public String updatePost(PostDto postDto){ // 글 수정
         postService.update(postDto);
         return "redirect:/post/read?postId="+postDto.getPostId();
     }
 
+    @PreAuthorize("hasAuthority('delete_anything') or #postDto.userId == principal.userId")
     @PostMapping("/delete")
     public String deletePost(PostDto postDto){ // 글 삭제
         postService.delete(postDto);
