@@ -42,7 +42,7 @@
         }
 
         function comment_upload(){
-            if ('${authenticated}' === false)
+            if ('${!authenticated}')
             {
                 alert("로그인하세요");
                 return false;
