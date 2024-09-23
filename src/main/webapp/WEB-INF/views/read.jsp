@@ -28,6 +28,7 @@
     <script>
         var token = $("meta[name='_csrf']").attr("content");
         var header = $("meta[name='_csrf_header']").attr("content");
+        var authenticated = ${authenticated};
 
         function quit(){
             location.href = "/";
@@ -42,7 +43,7 @@
         }
 
         function comment_upload(){
-            if ('${!authenticated}')
+            if (!authenticated)
             {
                 alert("로그인하세요");
                 return false;
