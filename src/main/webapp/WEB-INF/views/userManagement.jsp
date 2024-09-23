@@ -22,8 +22,12 @@
             padding: 10px;
         }
     </style>
-
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+        function quit(){
+            location.href = "/";
+        }
+    </script>
     <title>회원 관리</title>
 </head>
 <body>
@@ -33,6 +37,7 @@
     </div>
     <div class="pageTitle" style="width: 100%; height: 15%; margin-left: 20%">
         <p style="width: 80%; height: 10%; font-size: 45px; font-weight: bolder; text-align: center;">회원 관리</p>
+        <p style="width: 80%; height: 4%; font-size: 15px; font-weight: bolder; text-align: center;" onclick="quit()">홈으로</p>
     </div>
     <div class="listTable" style="width: 100%; height: 70%; margin-left: 20%">
         <table style="width: 80%; height: 70%;">
@@ -46,7 +51,14 @@
                 <tr>
                     <td style="width: 50%; height: 5%; font-size: 20px; text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${userInfo.userId}</td>
                     <td style="width: 15%; height: 5%; font-size: 20px; text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${userInfo.userRole}</td>
-                    <td style="width: 30%; height: 5%; font-size: 20px; text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><button>회원 탈퇴</button></td>
+                    <td style="width: 30%; height: 5%; text-align: center;">
+                        <form method="post">
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                            <input type="hidden" name="userId" value="${userInfo.userId}">
+                            <button style="text-align: center; font-size: 20px; display :inline-block;">활동 정지</button>
+                            <button type="submit" formaction="/userEjection" style="text-align: center; font-size: 20px; display :inline-block;">회원 탈퇴</button>
+                        </form>
+                    </td>
                 </tr>
             </c:forEach>
         </table>

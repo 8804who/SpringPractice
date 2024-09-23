@@ -52,11 +52,4 @@ public class MainController {
     public @ResponseBody int duplicateCheck(@RequestParam String userId) { // ID 중복 검색
         return customUserDetailsService.duplicateCheck(userId);
     }
-
-    @GetMapping("/userManagement")
-    public String userManagement(Model model, Principal principal) { // 회원 관리 페이지
-        model.addAttribute("principal", principal);
-        model.addAttribute("userList", customUserDetailsService.getUserList());
-        return "userManagement";
-    }
 }
