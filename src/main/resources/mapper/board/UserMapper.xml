@@ -23,7 +23,7 @@
         FROM user_table
     </select>
 
-    <delete id="ejection" parameterType="CustomUserDetails">
+    <delete id="userDelete" parameterType="CustomUserDetails">
         DELETE FROM user_table
         WHERE user_id=#{userId}
     </delete>

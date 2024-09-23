@@ -30,8 +30,8 @@ public class UserRepository {
         return sql.selectList("User.getUserList");
     }
 
-    public void ejection(CustomUserDetails customUserDetails)
+    public void userDelete(CustomUserDetails customUserDetails)
     {
-        sql.delete("User.ejection",customUserDetails);
+        sql.delete("User.userDelete",customUserDetails);
     }
 }

@@ -21,8 +21,8 @@ public class UserManagementController {
     }
 
     @PostMapping("/userEjection")
-    public String userEjection(CustomUserDetails customUserDetails) {
-        customUserDetailsService.ejection(customUserDetails);
+    public String userEjection(CustomUserDetails customUserDetails) { // 회원 강제 탈퇴
+        customUserDetailsService.userDelete(customUserDetails);
         return "redirect:/userManagement";
     }
 }

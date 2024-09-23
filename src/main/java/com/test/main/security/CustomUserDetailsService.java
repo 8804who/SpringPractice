@@ -53,8 +53,8 @@ public class CustomUserDetailsService implements UserDetailsService {
         return userRepository.getUserList();
     }
 
-    public void ejection(CustomUserDetails customUserDetails)
+    public void userDelete(CustomUserDetails customUserDetails)
     {
-        userRepository.ejection(customUserDetails);
+        userRepository.userDelete(customUserDetails);
     }
 }
