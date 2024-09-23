@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="User">
-    <select id="getUserById" resultType="CustomUserDetails">
-        SELECT user_id, pw, user_role
+    <select id="getUserById" resultType="user">
+        SELECT user_id, pw, user_role, enable
         FROM user_table
         WHERE user_id = #{userId}
     </select>
 
-    <insert id="register" parameterType="CustomUserDetails">
+    <insert id="register" parameterType="user">
         INSERT INTO user_table(user_id, pw, user_role)
         VALUES(#{userId}, #{pw}, #{userRole})
     </insert>
@@ -18,13 +18,25 @@
         WHERE user_id=#{userId}
     </select>
 
-    <select id="getUserList" resultType="CustomUserDetails">
-        SELECT user_id, user_role
+    <select id="getUserList" resultType="user">
+        SELECT user_id, user_role, enable
         FROM user_table
     </select>
 
-    <delete id="userDelete" parameterType="CustomUserDetails">
+    <delete id="userDelete" parameterType="user">
         DELETE FROM user_table
         WHERE user_id=#{userId}
     </delete>
+
+    <update id="userActivate" parameterType="user">
+        UPDATE user_table
+        SET enable = TRUE
+        WHERE user_id=#{userId}
+    </update>
+
+    <update id="userDeactivate" parameterType="user">
+        UPDATE user_table
+        SET enable = FALSE
+        WHERE user_id=#{userId}
+    </update>
 </mapper>

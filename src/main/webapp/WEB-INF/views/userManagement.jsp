@@ -55,8 +55,13 @@
                         <form method="post">
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                             <input type="hidden" name="userId" value="${userInfo.userId}">
-                            <button style="text-align: center; font-size: 20px; display :inline-block;">활동 정지</button>
-                            <button type="submit" formaction="/userEjection" style="text-align: center; font-size: 20px; display :inline-block;">회원 탈퇴</button>
+                            <c:if test="${userInfo.enable}">
+                                <button type="submit" formaction="/userDeactivate" style="text-align: center; font-size: 20px; display :inline-block;">활동 정지</button>
+                            </c:if>
+                            <c:if test="${!userInfo.enable}">
+                                <button type="submit" formaction="/userActivate" style="text-align: center; font-size: 20px; display :inline-block;">정지 해제</button>
+                            </c:if>
+                            <button type="submit" formaction="/userDelete" style="text-align: center; font-size: 20px; display :inline-block;">회원 탈퇴</button>
                         </form>
                     </td>
                 </tr>

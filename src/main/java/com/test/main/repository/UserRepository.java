@@ -32,6 +32,14 @@ public class UserRepository {
 
     public void userDelete(CustomUserDetails customUserDetails)
     {
-        sql.delete("User.userDelete",customUserDetails);
+        sql.delete("User.userDelete", customUserDetails);
+    }
+
+    public void userActivate(CustomUserDetails customUserDetails){
+        sql.update("User.userActivate", customUserDetails);
+    }
+
+    public void userDeactivate(CustomUserDetails customUserDetails){
+        sql.update("User.userDeactivate", customUserDetails);
     }
 }

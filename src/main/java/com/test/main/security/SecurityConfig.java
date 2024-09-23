@@ -37,7 +37,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 ).permitAll() // 해당 페이지는 인증 없이 허용
                 .antMatchers(
                         "/userManagement",
-                        "/userEjection"
+                        "/userDelete",
+                        "/userActivate",
+                        "/userDeactivate"
                 ).hasAuthority("user_management")
                 .anyRequest().authenticated() // 이외 페이지는 모두 인증 필요
         ;

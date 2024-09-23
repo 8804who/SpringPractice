@@ -20,9 +20,21 @@ public class UserManagementController {
         return "userManagement";
     }
 
-    @PostMapping("/userEjection")
-    public String userEjection(CustomUserDetails customUserDetails) { // 회원 강제 탈퇴
+    @PostMapping("/userDelete")
+    public String userDelete(CustomUserDetails customUserDetails) { // 회원 탈퇴
         customUserDetailsService.userDelete(customUserDetails);
+        return "redirect:/userManagement";
+    }
+
+    @PostMapping("/userActivate")
+    public String userActivate(CustomUserDetails customUserDetails) { // 계정 활성화
+        customUserDetailsService.userActivate(customUserDetails);
+        return "redirect:/userManagement";
+    }
+
+    @PostMapping("/userDeactivate")
+    public String userDeactivate(CustomUserDetails customUserDetails) { // 계정 활성화
+        customUserDetailsService.userDeactivate(customUserDetails);
         return "redirect:/userManagement";
     }
 }

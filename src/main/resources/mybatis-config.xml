@@ -14,7 +14,7 @@
         <typeAlias type="com.test.main.dto.PostDto" alias="post"></typeAlias>
         <typeAlias type="com.test.main.dto.MetadataDto" alias="metadata"></typeAlias>
         <typeAlias type="com.test.main.dto.CommentDto" alias="comment"></typeAlias>
-        <typeAlias type="com.test.main.security.CustomUserDetails" alias="CustomUserDetails"></typeAlias>
+        <typeAlias type="com.test.main.security.CustomUserDetails" alias="user"></typeAlias>
         <typeAlias type="com.test.main.dto.AuthorityDto" alias="authority"></typeAlias>
     </typeAliases>
 </configuration>
