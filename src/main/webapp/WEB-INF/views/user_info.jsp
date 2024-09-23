@@ -21,6 +21,10 @@
         function register(){
             location.href = "/registerForm";
         }
+
+        function userManagement(){
+            location.href = "/userManagement"
+        }
     </script>
 </head>
 <body>
@@ -34,6 +38,10 @@
         <sec:authorize access="isAuthenticated()">
             <span>${principal.getName()}</span>
             <span>|</span>
+            <sec:authorize access="hasAuthority('user_management')">
+                <span onclick="userManagement()">회원 관리</span>
+                <span>|</span>
+            </sec:authorize>
             <span onclick="logout()">로그아웃</span>
         </sec:authorize>
     </div>

@@ -9,14 +9,17 @@
     <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
 
     <style>
-        html,
-        body {
+        .wrapper {
             width: 80%;
             height: 100%;
         }
-        .wrapper {
-            width: 100%;
-            height: 100%;
+
+        table, tr, td, th {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
         }
     </style>
 
@@ -24,14 +27,29 @@
     <title>회원 관리</title>
 </head>
 <body>
-<div class="wrapper" style="margin-left: 30%">
+<div class="wrapper">
     <div class="userInfo" style="margin-left: 70%">
         <%@ include file="user_info.jsp" %>
     </div>
-    <div class="user_list">
-        <c:forEach items="${userList}" var="userInfo">
-            <p>${userInfo.userId}</p>
-        </c:forEach>
+    <div class="pageTitle" style="width: 100%; height: 15%; margin-left: 20%">
+        <p style="width: 80%; height: 10%; font-size: 45px; font-weight: bolder; text-align: center;">회원 관리</p>
+    </div>
+    <div class="listTable" style="width: 100%; height: 70%; margin-left: 20%">
+        <table style="width: 80%; height: 70%;">
+            <tr>
+                <th style="width: 50%; height: 5%; font-size: 20px">유저 ID</th>
+                <th style="width: 15%; height: 5%; font-size: 20px">유저 권한</th>
+                <th style="width: 30%; height: 5%; font-size: 20px">유저 관리</th>
+            </tr>
+
+            <c:forEach items="${userList}" var="userInfo">
+                <tr>
+                    <td style="width: 50%; height: 5%; font-size: 20px; text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${userInfo.userId}</td>
+                    <td style="width: 15%; height: 5%; font-size: 20px; text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${userInfo.userRole}</td>
+                    <td style="width: 30%; height: 5%; font-size: 20px; text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><button>회원 탈퇴</button></td>
+                </tr>
+            </c:forEach>
+        </table>
     </div>
 </div>
 </body>
