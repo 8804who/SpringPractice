@@ -47,4 +47,14 @@ public class CustomUserDetailsService implements UserDetailsService {
     public int duplicateCheck(String userId) {
         return userRepository.duplicateCheck(userId);
     }
+
+    public List<CustomUserDetails> getUserList()
+    {
+        return userRepository.getUserList();
+    }
+
+    public void ejection(CustomUserDetails customUserDetails)
+    {
+        userRepository.ejection(customUserDetails);
+    }
 }

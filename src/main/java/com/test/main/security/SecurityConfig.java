@@ -35,6 +35,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/register",
                         "/duplicateCheck"
                 ).permitAll() // 해당 페이지는 인증 없이 허용
+                .antMatchers(
+                        "/userManagement"
+                ).hasAuthority("user_management")
                 .anyRequest().authenticated() // 이외 페이지는 모두 인증 필요
         ;
 
@@ -44,7 +47,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/loginCheck")
                 .usernameParameter("userId")
                 .passwordParameter("pw")
-                .defaultSuccessUrl("/")
         ;
 
         http

@@ -1,10 +1,11 @@
 package com.test.main.repository;
 
 import com.test.main.security.CustomUserDetails;
-import com.test.main.security.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 
 @Repository
@@ -22,5 +23,15 @@ public class UserRepository {
 
     public int duplicateCheck(String userId) {
         return sql.selectOne("User.duplicateCheck", userId);
+    }
+
+    public List<CustomUserDetails> getUserList()
+    {
+        return sql.selectList("User.getUserList");
+    }
+
+    public void ejection(CustomUserDetails customUserDetails)
+    {
+        sql.delete("User.ejection",customUserDetails);
     }
 }
