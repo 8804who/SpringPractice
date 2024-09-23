@@ -76,7 +76,7 @@
 </head>
 <body>
 <div class="wrapper" style="margin-left: 30%">
-    <div class="userInfo" style="margin-left: 70%">
+    <div class="userInfo" style="margin-left: 60%">
         <%@ include file="user_info.jsp" %>
     </div>
     <div class="Post" style="width: 100%; height: 80%">

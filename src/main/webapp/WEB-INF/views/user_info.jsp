@@ -7,9 +7,6 @@
     <meta charset="UTF-8">
     <title>user_info</title>
     <script>
-        var token = $("meta[name='_csrf']").attr("content");
-        var header = $("meta[name='_csrf_header']").attr("content");
-
         function login(){
             location.href = "/loginForm";
         }
