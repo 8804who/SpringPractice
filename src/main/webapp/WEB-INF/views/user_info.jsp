@@ -22,6 +22,10 @@
         function userManagement(){
             location.href = "/userManagement"
         }
+
+        function userExit(){
+            location.href = "/userExitForm"
+        }
     </script>
 </head>
 <body>
@@ -39,6 +43,8 @@
                 <span onclick="userManagement()">회원 관리</span>
                 <span>|</span>
             </sec:authorize>
+            <span onclick="userExit()">회원 탈퇴</span>
+            <span>|</span>
             <span onclick="logout()">로그아웃</span>
         </sec:authorize>
     </div>

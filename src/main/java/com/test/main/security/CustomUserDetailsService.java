@@ -67,4 +67,9 @@ public class CustomUserDetailsService implements UserDetailsService {
     {
         userRepository.userDeactivate(customUserDetails);
     }
+
+    public String passwordCheck(CustomUserDetails customUserDetails)
+    {
+        return userRepository.passwordCheck(customUserDetails);
+    }
 }

@@ -42,4 +42,8 @@ public class UserRepository {
     public void userDeactivate(CustomUserDetails customUserDetails){
         sql.update("User.userDeactivate", customUserDetails);
     }
+
+    public String passwordCheck(CustomUserDetails customUserDetails) {
+        return sql.selectOne("User.passwordCheck", customUserDetails);
+    }
 }

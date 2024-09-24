@@ -52,4 +52,9 @@ public class MainController {
     public @ResponseBody int duplicateCheck(@RequestParam String userId) { // ID 중복 검색
         return customUserDetailsService.duplicateCheck(userId);
     }
+
+    @PostMapping("/passwordCheck")
+    public @ResponseBody boolean passwordCheck(@RequestBody CustomUserDetails customUserDetails) { // 비밀번호 조회
+        return new BCryptPasswordEncoder().matches(customUserDetails.getPassword(), customUserDetailsService.passwordCheck(customUserDetails));
+    }
 }

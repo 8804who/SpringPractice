@@ -20,10 +20,22 @@ public class UserManagementController {
         return "userManagement";
     }
 
+    @GetMapping("/userExitForm")
+    public String userExitForm(Model model, Principal principal) {
+        model.addAttribute("principal", principal);
+        return "userExitForm";
+    }
+
     @PostMapping("/userDelete")
-    public String userDelete(CustomUserDetails customUserDetails) { // 회원 탈퇴
+    public String userDelete(CustomUserDetails customUserDetails) { // 회원 강제 탈퇴
         customUserDetailsService.userDelete(customUserDetails);
         return "redirect:/userManagement";
+    }
+
+    @PostMapping("/userExit")
+    public String userExit(CustomUserDetails customUserDetails) { // 회원 탈퇴
+        customUserDetailsService.userDelete(customUserDetails);
+        return "redirect:/logout";
     }
 
     @PostMapping("/userActivate")

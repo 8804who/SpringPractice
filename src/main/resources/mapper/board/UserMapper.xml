@@ -18,6 +18,12 @@
         WHERE user_id=#{userId}
     </select>
 
+    <select id="passwordCheck" parameterType="user" resultType="String">
+        SELECT pw
+        FROM user_table
+        WHERE user_id=#{userId}
+    </select>
+
     <select id="getUserList" resultType="user">
         SELECT user_id, user_role, enable
         FROM user_table
