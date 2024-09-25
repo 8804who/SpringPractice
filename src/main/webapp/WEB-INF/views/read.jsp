@@ -19,7 +19,7 @@
             height: 100%;
         }
         .wrapper {
-            width: 100%;
+            width: 80%;
             height: 100%;
         }
     </style>
@@ -76,7 +76,7 @@
 </head>
 <body>
 <div class="wrapper" style="margin-left: 30%">
-    <div class="userInfo" style="margin-left: 60%">
+    <div class="userInfo" style="margin-left: 70%">
         <%@ include file="user_info.jsp" %>
     </div>
     <div class="Post" style="width: 100%; height: 80%">

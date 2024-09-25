@@ -66,5 +66,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .tokenValiditySeconds(86400 * 7)
                 .userDetailsService(customUserDetailsService)
         ;
+
+        http
+                .exceptionHandling()
+                .accessDeniedPage("/403");
     }
 }
