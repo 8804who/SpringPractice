@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class ErrorPageController {
-    @GetMapping("/AccessDenied")
+    @GetMapping("/ErrorPage")
     public String loginForm(){ // 로그인 페이지
-        return "AccessDenied";
+        return "ErrorPage";
     }
 }

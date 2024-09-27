@@ -11,6 +11,6 @@
     <title>오류</title>
 </head>
 <body>
-401이요
+에러 발생
 </body>
 </html>
