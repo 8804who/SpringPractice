@@ -70,6 +70,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .exceptionHandling()
+                .authenticationEntryPoint(new MyAuthenticationEntryPoint())
                 .accessDeniedPage("/errorPage");
     }
 }
