@@ -33,7 +33,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/loginCheck",
                         "/registerForm",
                         "/register",
-                        "/duplicateCheck"
+                        "/duplicateCheck",
+                        "/errorPage"
                 ).permitAll() // 해당 페이지는 인증 없이 허용
                 .antMatchers(
                         "/userManagement",
@@ -69,6 +70,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .exceptionHandling()
-                .accessDeniedPage("/ErrorPage");
+                .accessDeniedPage("/errorPage");
     }
 }

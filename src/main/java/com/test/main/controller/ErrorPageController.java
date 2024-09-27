@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class ErrorPageController {
-    @GetMapping("/ErrorPage")
-    public String loginForm(){ // 로그인 페이지
-        return "ErrorPage";
+    @GetMapping("/errorPage")
+    public String errorPage(){ // 에러 페이지
+        return "errorPage";
     }
 }
