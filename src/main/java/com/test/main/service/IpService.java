@@ -1,12 +1,9 @@
 package com.test.main.service;
 
-import com.test.main.dto.AuthorityDto;
-import com.test.main.repository.AuthorityRepository;
 import com.test.main.repository.IpRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
