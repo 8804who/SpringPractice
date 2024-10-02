@@ -45,7 +45,7 @@
         <div class="underBar" style="width: 50%; height: 30%; margin-top: 1%; margin-left: 40%;">
             <div class="left_button" style="display: inline; padding-left: 2%; margin: 1% auto;">
                 <c:if test="${page > 10}">
-                    <span onclick = "location.href='/?page='+${page-1-(page-1)%10}"><img src="resources\img\left.png" height="2%" width="2%"></span>
+                    <span onclick = "location.href='/?page='+${page-1-(page-1)%10}"><img src="${pageContext.request.contextPath}/resources/img/left.png" height="2%" width="2%"></span>
                 </c:if>
             </div>
 
@@ -66,7 +66,7 @@
 
             <div class="right_button" style="display: inline; padding-left: 2%; margin: 1% auto;">
                 <c:if test="${((page-1-(page-1)%10)+10)*10 < postCount}">
-                    <span onclick = "location.href='/?page='+${(page-1-(page-1)%10)+11}"><img src="resources\img\right.png" height="2%" width="2%"></span>
+                    <span onclick = "location.href='/?page='+${(page-1-(page-1)%10)+11}"><img src="${pageContext.request.contextPath}/resources/img/right.png" height="2%" width="2%"></span>
                 </c:if>
             </div>
 
