@@ -34,7 +34,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/registerForm",
                         "/register",
                         "/duplicateCheck",
-                        "/errorPage"
+                        "/errorPage",
+                        "/banned"
                 ).permitAll() // 해당 페이지는 인증 없이 허용
                 .antMatchers(
                         "/userManagement",

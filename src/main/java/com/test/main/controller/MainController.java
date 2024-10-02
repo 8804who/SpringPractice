@@ -31,6 +31,11 @@ public class MainController {
         return "list";
     }
 
+    @GetMapping("/banned")
+    public String banned(){ // 차단된 IP 접속 시 차단 알림 페이지
+        return "banned";
+    }
+
     @GetMapping("/loginForm")
     public String loginForm(){ // 로그인 페이지
         return "loginForm";
