@@ -15,7 +15,7 @@ public class BannedIpInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        String ipAddress = InetAddress.getLocalHost().getHostAddress();
+        String ipAddress = request.getRemoteAddr();
 
         System.out.println(ipAddress);
 
