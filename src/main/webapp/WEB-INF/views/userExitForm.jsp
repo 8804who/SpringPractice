@@ -22,7 +22,7 @@
         }
     </style>
 
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="src/main/webapp/resources/js/jquery-3.7.1.min.js"></script>
     <script>
         var token = $("meta[name='_csrf']").attr("content");
         var header = $("meta[name='_csrf_header']").attr("content");
