@@ -1,6 +1,5 @@
 package com.test.main.interceptor;
 
-import com.test.main.repository.IpRepository;
 import com.test.main.service.IpService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.servlet.HandlerInterceptor;
