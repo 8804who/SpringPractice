@@ -22,7 +22,6 @@
             padding: 10px;
         }
     </style>
-    <script src="src/main/webapp/resources/js/jquery-3.7.1.min.js"></script>
     <script>
         function quit(){
             location.href = "/";

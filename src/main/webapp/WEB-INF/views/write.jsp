@@ -15,7 +15,7 @@
             height: 100%;
         }
     </style>
-    <script src="https://code.jquery.com/jquery-3.7.1.js">
+    <script src="resources/js/jquery-3.7.1.min.js">
 
     </script>
     <script>

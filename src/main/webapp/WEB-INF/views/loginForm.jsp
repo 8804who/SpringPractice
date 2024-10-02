@@ -18,7 +18,6 @@
             padding: 10px;
         }
     </style>
-    <script src="src/main/webapp/resources/js/jquery-3.7.1.min.js"></script>
     <title>로그인</title>
 <body>
 <div class="wrapper">
