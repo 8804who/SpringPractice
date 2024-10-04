@@ -4,12 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>footer</title>
-    <script>
-    </script>
 </head>
 <body>
-    <div class="advertise">
-        <p></p>
+    <div class="advertise" style="margin-left: 50%">
+        <p>놀러가고 싶다</p>
     </div>
 </body>
 </html>
