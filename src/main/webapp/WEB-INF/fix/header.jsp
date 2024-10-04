@@ -35,6 +35,7 @@
             <span onclick="register()" style="margin-left: 20%">회원가입</span>
             <span>|</span>
             <span onclick="login()">로그인</span>
+            <img src="${pageContext.request.contextPath}/resources/img/anonymous.png" style="width: 50px; height: 50px">
         </sec:authorize>
 
         <sec:authorize access="isAuthenticated()">

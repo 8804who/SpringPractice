@@ -36,8 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/duplicateCheck",
                         "/errorPage",
                         "/banned",
-                        "/resources/css/board.css",
-                        "/resources/js/jquery-3.7.1.min.js"
+                        "/resources/**"
                 ).permitAll() // 해당 페이지는 인증 없이 허용
                 .antMatchers(
                         "/userManagement",
