@@ -4,17 +4,7 @@
 <html lang="kr">
 <head>
     <meta charset="UTF-8">
-    <style>
-        html,
-        body {
-            width: 80%;
-            height: 100%;
-        }
-        .wrapper {
-            width: 100%;
-            height: 100%;
-        }
-    </style>
+    <link href="${pageContext.request.contextPath}/resources/css/board.css" rel="stylesheet">
     <title>차단된 IP입니다.</title>
 </head>
 <body>
