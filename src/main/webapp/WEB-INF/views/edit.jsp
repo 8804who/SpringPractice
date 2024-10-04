@@ -5,11 +5,6 @@
 <head>
     <meta charset="UTF-8">
     <link href="${pageContext.request.contextPath}/resources/css/board.css" rel="stylesheet">
-    <script>
-        function quit(){ // 나가기 버튼
-            location.href = "/post/read?postId="+${post.postId};
-        }
-    </script>
     <title>${post.postTitle}</title>
 </head>
 <body>
@@ -40,5 +35,10 @@
             </form>
         </div>
     </div>
+    <script>
+        function quit(){ // 나가기 버튼
+            location.href = "/post/read?postId="+${post.postId};
+        }
+    </script>
 </body>
 </html>

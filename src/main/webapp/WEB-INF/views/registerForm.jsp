@@ -7,37 +7,6 @@
     <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
     <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
     <link href="${pageContext.request.contextPath}/resources/css/board.css" rel="stylesheet">
-    <script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.1.min.js"></script>
-    <script>
-        var token = $("meta[name='_csrf']").attr("content");
-        var header = $("meta[name='_csrf_header']").attr("content");
-
-        function disableSubmit(){
-            $('#submit').attr("disabled",true);
-        }
-
-        function checkId(){
-            $.ajax({
-                url:"/duplicateCheck",
-                type:'post',
-                data: {userId:$('#userId').val()},
-                beforeSend: function(xhr) {
-                    xhr.setRequestHeader(header, token);
-                },
-                success:function(cnt){
-                    if(cnt === 0){
-                        alert("사용 가능한 ID입니다");
-                        $("#submit").removeAttr("disabled");
-                    } else {
-                        alert("이미 존재하는 ID입니다.");
-                    }
-                },
-                error:function() {
-                    alert("에러가 발생하였습니다.");
-                }
-            });
-        }
-    </script>
     <title>회원가입</title>
 <body>
 <div class="wrapper">
@@ -55,5 +24,35 @@
         <input type="submit" id="submit" value="회원가입" disabled/>
     </form>
 </div>
+<script>
+    var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+
+    function disableSubmit(){
+        $('#submit').attr("disabled",true);
+    }
+
+    function checkId(){
+        $.ajax({
+            url:"/duplicateCheck",
+            type:'post',
+            data: {userId:$('#userId').val()},
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader(header, token);
+            },
+            success:function(cnt){
+                if(cnt === 0){
+                    alert("사용 가능한 ID입니다");
+                    $("#submit").removeAttr("disabled");
+                } else {
+                    alert("이미 존재하는 ID입니다.");
+                }
+            },
+            error:function() {
+                alert("에러가 발생하였습니다.");
+            }
+        });
+    }
+</script>
 </body>
 </html>

@@ -5,11 +5,6 @@
 <head>
     <meta charset="UTF-8">
     <link href="${pageContext.request.contextPath}/resources/css/board.css" rel="stylesheet">
-    <script>
-        function quit(){
-            location.href = "/";
-        }
-    </script>
     <title>글 쓰기</title>
 </head>
 <body>
@@ -39,5 +34,10 @@
             </form>
         </div>
     </div>
+    <script>
+        function quit(){
+            location.href = "/";
+        }
+    </script>
 </body>
 </html>

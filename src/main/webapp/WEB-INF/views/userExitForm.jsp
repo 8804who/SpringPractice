@@ -7,7 +7,17 @@
     <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
     <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
     <link href="${pageContext.request.contextPath}/resources/css/board.css" rel="stylesheet">
-    <script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.1.min.js"></script>
+    <title>회원 탈퇴</title>
+<body>
+    <div class="wrapper">
+        <form method="post" id="exit" action="${pageContext.request.contextPath}/userExit" style="width: 100%; height: 100%">
+            <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}">
+            <input type="text" name="userId" id="userId" value="${principal.getName()}" readonly/>
+            <input type="password" name="pw" id="pw" placeholder="Password" pattern=".*\S+.*" maxlength="10" required/>
+            <button type="button" onclick="checkPW()">비밀번호 확인</button>
+            <input type="submit" id="submit" value="회원 탈퇴" disabled/>
+        </form>
+    </div>
     <script>
         var token = $("meta[name='_csrf']").attr("content");
         var header = $("meta[name='_csrf_header']").attr("content");
@@ -35,16 +45,5 @@
             });
         }
     </script>
-    <title>회원 탈퇴</title>
-<body>
-<div class="wrapper">
-    <form method="post" id="exit" action="${pageContext.request.contextPath}/userExit" style="width: 100%; height: 100%">
-        <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}">
-        <input type="text" name="userId" id="userId" value="${principal.getName()}" readonly/>
-        <input type="password" name="pw" id="pw" placeholder="Password" pattern=".*\S+.*" maxlength="10" required/>
-        <button type="button" onclick="checkPW()">비밀번호 확인</button>
-        <input type="submit" id="submit" value="회원 탈퇴" disabled/>
-    </form>
-</div>
 </body>
 </html>
