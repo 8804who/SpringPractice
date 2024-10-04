@@ -6,6 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>user_info</title>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.1.min.js"></script>
     <script>
         function login(){
             location.href = "/loginForm";

@@ -4,17 +4,7 @@
 <html lang="kr">
 <head>
     <meta charset="UTF-8">
-    <style>
-        html,
-        body {
-            width: 80%;
-            height: 100%;
-        }
-        .wrapper {
-            width: 100%;
-            height: 100%;
-        }
-    </style>
+    <link href="${pageContext.request.contextPath}/resources/css/board.css" rel="stylesheet">
     <script>
         function quit(){ // 나가기 버튼
             location.href = "/post/read?postId="+${post.postId};
@@ -23,7 +13,10 @@
     <title>${post.postTitle}</title>
 </head>
 <body>
-    <div class="wrapper" style="margin-left: 30%">
+    <div class="wrapper">
+        <div class="header">
+            <%@ include file="../fix/header.jsp" %>
+        </div>
         <div class="Post" style="width: 100%; height: 80%">
             <form method="post" style="width: 100%; height: 100%">
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"> <%-- csrf 토큰 --%>

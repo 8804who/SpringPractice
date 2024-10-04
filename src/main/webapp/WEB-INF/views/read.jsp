@@ -11,19 +11,7 @@
     <sec:authorize access="isAuthenticated()" var="authenticated"/>
     <sec:authorize access="hasAuthority('delete_anything')" var="delete_anything"/>
     <sec:authorize access="hasAuthority('modify_anything')" var="modify_anything"/>
-
-    <style>
-        html,
-        body {
-            width: 80%;
-            height: 100%;
-        }
-        .wrapper {
-            width: 80%;
-            height: 100%;
-        }
-    </style>
-
+    <link href="${pageContext.request.contextPath}/resources/css/board.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.1.min.js"></script>
     <script>
         var token = $("meta[name='_csrf']").attr("content");
@@ -75,9 +63,9 @@
     <title>${post.postTitle}</title>
 </head>
 <body>
-<div class="wrapper" style="margin-left: 30%">
-    <div class="userInfo" style="margin-left: 70%">
-        <%@ include file="user_info.jsp" %>
+<div class="wrapper">
+    <div class="header">
+        <%@ include file="../fix/header.jsp" %>
     </div>
     <div class="Post" style="width: 100%; height: 80%">
         <form method="post" style="width: 100%; height: 100%">
