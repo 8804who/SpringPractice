@@ -6,21 +6,7 @@
     <meta charset="UTF-8">
     <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
     <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
-
-    <style>
-        .wrapper {
-            width: 80%;
-            height: 100%;
-        }
-
-        table, tr, td, th {
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 10px;
-        }
-    </style>
+    <link href="${pageContext.request.contextPath}/resources/css/board.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.1.min.js"></script>
     <script>
         var token = $("meta[name='_csrf']").attr("content");

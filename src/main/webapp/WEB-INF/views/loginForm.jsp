@@ -4,20 +4,7 @@
 <html lang="kr">
 <head>
     <meta charset="UTF-8">
-    <style>
-        .wrapper {
-            width: 80%;
-            height: 100%;
-        }
-
-        table, tr, td, th {
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 10px;
-        }
-    </style>
+    <link href="${pageContext.request.contextPath}/resources/css/board.css" rel="stylesheet">
     <title>로그인</title>
 <body>
 <div class="wrapper">
