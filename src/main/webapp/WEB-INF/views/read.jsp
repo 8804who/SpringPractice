@@ -134,6 +134,9 @@
                 </c:forEach>
             </div>
         </div>
+        <div class="footer">
+            <%@ include file="../fix/footer.jsp" %>
+        </div>
     </div>
 
     <script>

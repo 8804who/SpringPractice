@@ -61,6 +61,9 @@
                 <button style="width:20%; height: 20%; background: skyblue; border-color: skyblue; color:white; font-size: 20px" onclick = "location.href='/post/write'">글쓰기</button>
             </div>
         </div>
+        <div class="footer">
+            <%@ include file="../fix/footer.jsp" %>
+        </div>
     </div>
 </body>
 </html>

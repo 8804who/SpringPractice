@@ -49,6 +49,9 @@
                 </c:forEach>
             </table>
         </div>
+        <div class="footer">
+            <%@ include file="../fix/footer.jsp" %>
+        </div>
     </div>
     <script>
         function quit(){
