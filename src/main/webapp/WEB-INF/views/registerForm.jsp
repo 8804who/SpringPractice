@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
     <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.1.min.js"></script>
     <link href="${pageContext.request.contextPath}/resources/css/board.css" rel="stylesheet">
     <title>회원가입</title>
 <body>
@@ -15,12 +16,17 @@
         <input type="text" name="userId" onkeydown="disableSubmit()" id="userId" placeholder="UserID" pattern=".*\S+.*" maxlength="10" required/>
         <button type="button" onclick="checkId()">중복 체크</button>
         <input type="password" name="pw" placeholder="Password" pattern=".*\S+.*" maxlength="10" required/>
-
+        <br>
         <label for="role">회원 등급</label>
         <select name="userRole" id="role">
             <option value="member">일반 회원</option>
             <option value="admin">관리자</option>
         </select>
+
+        <label for="image">프로필 이미지
+            <input type="file" name="profileImage" id="image" accept="image/png, image/jpeg">
+        </label>
+        <br>
         <input type="submit" id="submit" value="회원가입" disabled/>
     </form>
 </div>

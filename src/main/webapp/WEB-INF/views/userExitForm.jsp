@@ -7,6 +7,7 @@
     <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
     <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
     <link href="${pageContext.request.contextPath}/resources/css/board.css" rel="stylesheet">
+    <script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.1.min.js"></script>
     <title>회원 탈퇴</title>
 <body>
     <div class="wrapper">
