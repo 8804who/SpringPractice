@@ -8,10 +8,10 @@
     <title>글 쓰기</title>
 </head>
 <body>
+    <div class="header">
+        <%@ include file="../fix/header.jsp" %>
+    </div>
     <div class="wrapper">
-        <div class="header">
-            <%@ include file="../fix/header.jsp" %>
-        </div>
         <div class="Post" style="width: 100%; height: 80%">
             <form method="post" id="upload" action="${pageContext.request.contextPath}/post/upload" style="width: 100%; height: 100%">
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"> <%-- csrf 토큰 --%>
@@ -33,9 +33,9 @@
                 </div>
             </form>
         </div>
-        <div class="footer">
-            <%@ include file="../fix/footer.jsp" %>
-        </div>
+    </div>
+    <div class="footer">
+        <%@ include file="../fix/footer.jsp" %>
     </div>
     <script>
         function quit(){

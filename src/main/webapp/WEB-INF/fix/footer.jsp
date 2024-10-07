@@ -7,7 +7,7 @@
 </head>
 <body>
     <div class="advertise" style="margin-left: 50%">
-        <p>놀러가고 싶다</p>
+        <input type="text" name="postId" id="postId" value="놀러가고 싶다" readonly/>
     </div>
 </body>
 </html>

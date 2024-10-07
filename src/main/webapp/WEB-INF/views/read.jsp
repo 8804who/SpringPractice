@@ -15,10 +15,10 @@
     <title>${post.postTitle}</title>
 </head>
 <body>
+    <div class="header">
+        <%@ include file="../fix/header.jsp" %>
+    </div>
     <div class="wrapper">
-        <div class="header">
-            <%@ include file="../fix/header.jsp" %>
-        </div>
         <div class="Post" style="width: 100%; height: 80%">
             <form method="post" style="width: 100%; height: 100%">
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"> <%-- csrf 토큰 --%>
@@ -49,7 +49,7 @@
             </form>
         </div>
 
-        <div class="Comment" style="width: 100%; height: 20%">
+        <div class="Comment" style="width: 100%;">
             <p style="width: 50%; height: 30%; margin: 0% auto; font-size: 20px; font-weight: bold">${commentList.size()}개의 댓글</p>
             <div class="commentWrite" style="width: 50%; height: 70%; margin: 1% auto;">
                 <c:if test="${!authenticated}">
@@ -62,7 +62,7 @@
                 <textarea id="commentContents" placeholder="댓글을 작성하세요" style="width: 100%; height: 70%; resize: none; border: none; font-size: 20px; background: rgba(233,233,233,0.17); margin-top: 1%" maxlength="100"></textarea>
             </div>
 
-            <div class="commentRead" style="width: 50%; height: 20%; margin: 5% auto;">
+            <div class="commentRead" style="width: 50%; margin: 5% auto;">
                 <c:forEach items="${commentList}" var="comment">
                     <script>
                         $(document).on('click', '#commentEdit_${comment.commentId}',function() {
@@ -134,9 +134,9 @@
                 </c:forEach>
             </div>
         </div>
-        <div class="footer">
-            <%@ include file="../fix/footer.jsp" %>
-        </div>
+    </div>
+    <div class="footer">
+        <%@ include file="../fix/footer.jsp" %>
     </div>
 
     <script>
