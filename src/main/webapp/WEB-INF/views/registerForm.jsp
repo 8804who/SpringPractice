@@ -59,6 +59,23 @@
             }
         });
     }
+
+    $("input[name=profileImage]").on("change", function(){
+        let maxSize = 5 * 1024 * 1024; //* 5MB 사이즈 제한
+        let fileExt = this.files[0].name.split(".").pop().toLowerCase(); //업로드한 파일 확장자
+        let fileSize = this.files[0].size; //업로드한 파일 용량
+
+        if($.inArray(fileExt, ["jpg", "png"]) === -1){
+            alert("jpg와 png 파일만 첨부 가능합니다.");
+            $(this).val(''); //업로드한 파일 제거
+            return;
+        }
+
+        if(fileSize > maxSize){
+            alert("파일첨부 사이즈는 5MB 이내로 가능합니다.");
+            $(this).val(''); //업로드한 파일 제거
+        }
+    });
 </script>
 </body>
 </html>
