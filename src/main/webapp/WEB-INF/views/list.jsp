@@ -30,7 +30,7 @@
             </table>
         </div>
         <div class="underBar" style="width: 50%; height: 30%; margin-top: 5%; margin-left: 30%;">
-            <div class="left_button" style="display: inline; padding-left: 2%;">
+            <div class="left_button" style="display: inline; padding-left: 1%;">
                 <c:if test="${page > 10}">
                     <span onclick = "location.href='/?page='+${page-1-(page-1)%10}"><img src="${pageContext.request.contextPath}/resources/img/left.png" height="5%" width="5%"></span>
                 </c:if>
@@ -41,23 +41,23 @@
                     <c:if test="${(i-1)*10 < postCount}">
                         <c:choose>
                             <c:when test="${i != page}">
-                                <span style="font-size: 18px; padding-left: 2%" onclick = "location.href='/?page='+${i}">${i}</span>
+                                <span style="font-size: 18px; padding-left: 1%" onclick = "location.href='/?page='+${i}">${i}</span>
                             </c:when>
                             <c:otherwise>
-                                <span style="font-size: 18px; padding-left: 2%; color: skyblue" onclick = "location.href='/?page='+${i}">${i}</span>
+                                <span style="font-size: 18px; padding-left: 1%; color: skyblue" onclick = "location.href='/?page='+${i}">${i}</span>
                             </c:otherwise>
                         </c:choose>
                     </c:if>
                 </c:forEach>
             </div>
 
-            <div class="right_button" style="display: inline; padding-left: 2%;">
+            <div class="right_button" style="display: inline; padding-left: 1%;">
                 <c:if test="${((page-1-(page-1)%10)+10)*10 < postCount}">
                     <span onclick = "location.href='/?page='+${(page-1-(page-1)%10)+11}"><img src="${pageContext.request.contextPath}/resources/img/right.png" height="5%" width="5%"></span>
                 </c:if>
             </div>
 
-            <div class="write_button" style="display: inline; padding-left: 2%;">
+            <div class="write_button" style="display: inline; padding-left: 1%;">
                 <button style="width:20%; height: 20%; background: skyblue; border-color: skyblue; color:white; font-size: 20px" onclick = "location.href='/post/write'">글쓰기</button>
             </div>
         </div>
