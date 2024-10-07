@@ -12,10 +12,10 @@
     <title>회원 관리</title>
 </head>
 <body>
-    <div class="header">
-        <%@ include file="../fix/header.jsp" %>
-    </div>
     <div class="wrapper">
+        <div class="header">
+            <%@ include file="../fix/header.jsp" %>
+        </div>
         <div class="pageTitle" style="width: 100%; height: 15%; margin-left: 10%">
             <p style="width: 80%; height: 10%; font-size: 45px; font-weight: bolder; text-align: center;">회원 관리</p>
             <p style="width: 80%; height: 4%; font-size: 15px; font-weight: bolder; text-align: center;" onclick="quit()">홈으로</p>
@@ -49,9 +49,9 @@
                 </c:forEach>
             </table>
         </div>
-    </div>
-    <div class="footer">
-        <%@ include file="../fix/footer.jsp" %>
+        <div class="footer">
+            <%@ include file="../fix/footer.jsp" %>
+        </div>
     </div>
     <script>
         function quit(){

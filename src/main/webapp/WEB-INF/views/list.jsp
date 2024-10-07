@@ -7,10 +7,10 @@
     <link href="${pageContext.request.contextPath}/resources/css/board.css" rel="stylesheet">
     <title>게시판</title>
 <body>
-    <div class="header">
-        <%@ include file="../fix/header.jsp" %>
-    </div>
     <div class="wrapper">
+        <div class="header">
+            <%@ include file="../fix/header.jsp" %>
+        </div>
         <div class="pageTitle" style="width: 100%; height: 15%; margin-left: 10%">
             <p style="width: 80%; height: 10%; font-size: 45px; font-weight: bolder; text-align: center;">게시판</p>
         </div>
@@ -61,9 +61,9 @@
                 <button style="width:20%; height: 20%; background: skyblue; border-color: skyblue; color:white; font-size: 20px" onclick = "location.href='/post/write'">글쓰기</button>
             </div>
         </div>
-    </div>
-    <div class="footer">
-        <%@ include file="../fix/footer.jsp" %>
+        <div class="footer">
+            <%@ include file="../fix/footer.jsp" %>
+        </div>
     </div>
 </body>
 </html>

@@ -15,27 +15,27 @@
     <title>${post.postTitle}</title>
 </head>
 <body>
-    <div class="header">
-        <%@ include file="../fix/header.jsp" %>
-    </div>
     <div class="wrapper">
-        <div class="Post" style="width: 100%; height: 80%">
+        <div class="header">
+            <%@ include file="../fix/header.jsp" %>
+        </div>
+        <div class="Post" style="width: 100%; height: 100%;">
             <form method="post" style="width: 100%; height: 100%">
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"> <%-- csrf 토큰 --%>
                 <input type="text" name="postId" id="postId" value="${post.postId}" style = "display: none;"/>
-                <div class="Title" style="width: 50%; height: 16%; margin: 3% auto;">
+                <div class="Title">
                     <input type="text" name="postTitle" value="${post.postTitle}" style="border: none; width: 100%; height: 100%; font-size: 30px; font-weight: bold; background: rgba(233,233,233,0.17)" readonly/>
                 </div>
 
-                <div class="UserID" style="width: 50%; height:8%; margin: 3% auto;">
+                <div class="UserID">
                     <input type="text" name="userId" value="${post.userId}" style="border: none; width: 100%; height: 100%; font-size: 15px; background: rgba(233,233,233,0.17)" readonly/>
                 </div>
 
-                <div class="Contents" style="width: 50%; height: 50%; margin: 3% auto;">
+                <div class="Contents">
                     <textarea name="postContents" style="width: 100%; height: 100%; resize: none; border: none; font-size: 20px; background: rgba(233,233,233,0.17); overflow-y:scroll" readonly>${post.postContents}</textarea>
                 </div>
 
-                <div class="Button" style="width: 50%; height: 8%; margin: 3% auto;">
+                <div class="Button">
                     <button type="button" onclick="quit()" style="width: 32%; height: 100%; background: skyblue; font-size: 30px; background: rgba(233,233,233,0.17);">나가기</button>
                     <c:if test="${authenticated}">
                         <c:if test="${post.userId == principal.getName() || modify_anything}">
@@ -62,7 +62,7 @@
                 <textarea id="commentContents" placeholder="댓글을 작성하세요" style="width: 100%; height: 70%; resize: none; border: none; font-size: 20px; background: rgba(233,233,233,0.17); margin-top: 1%" maxlength="100"></textarea>
             </div>
 
-            <div class="commentRead" style="width: 50%; margin: 5% auto;">
+            <div class="commentRead" style="width: 50%; margin: 2% auto;">
                 <c:forEach items="${commentList}" var="comment">
                     <script>
                         $(document).on('click', '#commentEdit_${comment.commentId}',function() {
@@ -134,9 +134,9 @@
                 </c:forEach>
             </div>
         </div>
-    </div>
-    <div class="footer">
-        <%@ include file="../fix/footer.jsp" %>
+        <div class="footer">
+            <%@ include file="../fix/footer.jsp" %>
+        </div>
     </div>
 
     <script>
