@@ -6,8 +6,8 @@
     <title>footer</title>
 </head>
 <body>
-    <div class="advertise" style="margin-left: 50%">
-        <input type="text" name="postId" id="postId" value="놀러가고 싶다" readonly/>
+    <div class="advertise">
+        <img src="${pageContext.request.contextPath}/resources/img/banner.png" style="width: 780px; height: 100px">
     </div>
 </body>
 </html>

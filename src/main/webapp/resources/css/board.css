@@ -5,11 +5,12 @@ body {
 }
 
 .header {
-    margin-left: 70%;
+    margin-left: 60%;
 }
 
 .footer {
-    margin-left: 30%;
+    margin-top: 2%;
+    margin-left: 10%;
 }
 
 .wrapper {
