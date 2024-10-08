@@ -61,6 +61,6 @@ public class MainController {
 
     @PostMapping("/passwordCheck")
     public @ResponseBody boolean passwordCheck(@RequestBody CustomUserDetails customUserDetails) { // 비밀번호 조회
-        return new BCryptPasswordEncoder().matches(customUserDetails.getPassword(), customUserDetailsService.passwordCheck(customUserDetails));
+        return customUserDetailsService.passwordCheck(customUserDetails);
     }
 }

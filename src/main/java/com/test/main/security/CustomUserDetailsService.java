@@ -71,8 +71,8 @@ public class CustomUserDetailsService implements UserDetailsService {
         userRepository.userDeactivate(customUserDetails);
     }
 
-    public String passwordCheck(CustomUserDetails customUserDetails)
+    public boolean passwordCheck(CustomUserDetails customUserDetails)
     {
-        return userRepository.passwordCheck(customUserDetails);
+        return new BCryptPasswordEncoder().matches(customUserDetails.getPassword(), userRepository.passwordCheck(customUserDetails));
     }
 }
