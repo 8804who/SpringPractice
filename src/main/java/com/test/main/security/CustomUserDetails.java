@@ -16,6 +16,7 @@ public class CustomUserDetails implements UserDetails {
     private String pw;
     private String userRole;
     private boolean enable;
+    private String image;
     private List<GrantedAuthority> authList;
 
     @Override

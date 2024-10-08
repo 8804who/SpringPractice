@@ -6,6 +6,7 @@ import com.test.main.security.CustomUserDetailsService;
 import com.test.main.service.MetadataService;
 import com.test.main.service.PostService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,7 @@ import java.io.File;
 import java.security.Principal;
 import java.util.*;
 
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 public class MainController {
@@ -51,16 +53,23 @@ public class MainController {
     @PostMapping("/register")
     public String register(CustomUserDetails customUserDetails, MultipartFile profileImage){ //회원 등록
         customUserDetails.setPw(new BCryptPasswordEncoder().encode(customUserDetails.getPassword()));
-        customUserDetailsService.register(customUserDetails);
 
-        String uploadPath = "C:\\Users\\user\\IdeaProjects\\board\\src\\main\\webapp\\resources\\img\\profile";
-        File saveFile = new File(uploadPath, profileImage.getOriginalFilename());
+        if (!profileImage.isEmpty()) {
+            String uploadPath = "C:\\Users\\user\\IdeaProjects\\board\\src\\main\\webapp\\resources\\img\\profile";
+            UUID uuid = UUID.randomUUID();
+            String imageFileName = uuid + "_" + profileImage.getOriginalFilename();
+            File saveFile = new File(uploadPath, imageFileName);
 
-        try {
-            profileImage.transferTo(saveFile);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+            try {
+                profileImage.transferTo(saveFile);
+            } catch (Exception e) {
+                log.error(e.getMessage());
+            }
+
+            customUserDetails.setImage(imageFileName);
         }
+
+        customUserDetailsService.register(customUserDetails);
         return "redirect:/loginForm";
     }
 
