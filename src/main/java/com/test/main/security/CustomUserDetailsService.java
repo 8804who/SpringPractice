@@ -9,6 +9,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -40,7 +41,9 @@ public class CustomUserDetailsService implements UserDetailsService {
         return grantedAuthorities;
     }
 
-    public void register(CustomUserDetails customUserDetails) {
+    public void register(CustomUserDetails customUserDetails, String imagePath) {
+        customUserDetails.setPw(new BCryptPasswordEncoder().encode(customUserDetails.getPassword()));
+        customUserDetails.setProfileImage(imagePath);
         userRepository.register(customUserDetails);
     }
 

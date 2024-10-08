@@ -50,9 +50,7 @@ public class MainController {
 
     @PostMapping("/register")
     public String register(CustomUserDetails customUserDetails, ImageDto image){ //회원 등록
-        customUserDetails.setPw(new BCryptPasswordEncoder().encode(customUserDetails.getPassword()));
-        customUserDetails.setProfileImage(imageService.imageUpload(image));
-        customUserDetailsService.register(customUserDetails);
+        customUserDetailsService.register(customUserDetails, imageService.imageUpload(image));
         return "redirect:/loginForm";
     }
 
