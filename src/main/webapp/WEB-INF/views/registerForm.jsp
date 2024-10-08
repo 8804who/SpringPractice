@@ -24,7 +24,7 @@
         </select>
 
         <label for="image">프로필 이미지
-            <input type="file" name="profileImage" id="image" accept="image/png, image/jpeg">
+            <input type="file" name="image" id="image" accept="image/png, image/jpeg">
         </label>
         <br>
         <input type="submit" id="submit" value="회원가입" disabled/>

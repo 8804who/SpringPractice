@@ -1,29 +1,29 @@
 package com.test.main.controller;
 
+import com.test.main.dto.ImageDto;
 import com.test.main.dto.PostDto;
 import com.test.main.security.CustomUserDetails;
 import com.test.main.security.CustomUserDetailsService;
+import com.test.main.service.ImageService;
 import com.test.main.service.MetadataService;
 import com.test.main.service.PostService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.security.Principal;
 import java.util.*;
 
-@Slf4j
 @Controller
 @RequiredArgsConstructor
 public class MainController {
     private final PostService postService;
     private final MetadataService metadataService;
     private final CustomUserDetailsService customUserDetailsService;
+    private final ImageService imageService;
 
     @GetMapping("/")
     public String readList(Model model, @RequestParam(required = false, defaultValue = "1") int page, Principal principal){ // 게시글 목록 페이지
@@ -51,24 +51,9 @@ public class MainController {
     }
 
     @PostMapping("/register")
-    public String register(CustomUserDetails customUserDetails, MultipartFile profileImage){ //회원 등록
+    public String register(CustomUserDetails customUserDetails, ImageDto image){ //회원 등록
         customUserDetails.setPw(new BCryptPasswordEncoder().encode(customUserDetails.getPassword()));
-
-        if (!profileImage.isEmpty()) {
-            String uploadPath = "C:\\Users\\user\\IdeaProjects\\board\\src\\main\\webapp\\resources\\img\\profile";
-            UUID uuid = UUID.randomUUID();
-            String imageFileName = uuid + "_" + profileImage.getOriginalFilename();
-            File saveFile = new File(uploadPath, imageFileName);
-
-            try {
-                profileImage.transferTo(saveFile);
-            } catch (Exception e) {
-                log.error(e.getMessage());
-            }
-
-            customUserDetails.setImage(imageFileName);
-        }
-
+        customUserDetails.setProfileImage(imageService.imageUpload(image));
         customUserDetailsService.register(customUserDetails);
         return "redirect:/loginForm";
     }
