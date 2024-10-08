@@ -3,6 +3,7 @@ package com.test.main.controller;
 import com.test.main.security.CustomUserDetails;
 import com.test.main.security.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,15 +15,15 @@ public class UserManagementController {
     private final CustomUserDetailsService customUserDetailsService;
 
     @GetMapping("/userManagement")
-    public String userManagement(Model model, Principal principal) { // 회원 관리 페이지
-        model.addAttribute("principal", principal);
+    public String userManagement(Model model, @AuthenticationPrincipal CustomUserDetails customUserDetails) { // 회원 관리 페이지
+        model.addAttribute("principal", customUserDetails);
         model.addAttribute("userList", customUserDetailsService.getUserList());
         return "userManagement";
     }
 
     @GetMapping("/userExitForm")
-    public String userExitForm(Model model, Principal principal) {
-        model.addAttribute("principal", principal);
+    public String userExitForm(Model model, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+        model.addAttribute("principal", customUserDetails);
         return "userExitForm";
     }
 

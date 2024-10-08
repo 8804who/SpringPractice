@@ -38,10 +38,10 @@
                 <div class="Button">
                     <button type="button" onclick="quit()" style="width: 32%; height: 100%; background: skyblue; font-size: 30px; background: rgba(233,233,233,0.17);">나가기</button>
                     <c:if test="${authenticated}">
-                        <c:if test="${post.userId == principal.getName() || modify_anything}">
+                        <c:if test="${post.userId == principal.getUsername() || modify_anything}">
                             <button type="button" onclick="edit()" style="width: 32%; height: 100%; background: skyblue; font-size: 30px; background: rgba(233,233,233,0.17);">수정하기</button>
                         </c:if>
-                        <c:if test="${post.userId == principal.getName() || delete_anything}">
+                        <c:if test="${post.userId == principal.getUsername() || delete_anything}">
                             <button type="submit" formaction="/post/delete" style="width: 32%; height: 100%; background: skyblue; font-size: 30px; background: rgba(233,233,233,0.17);">삭제하기</button>
                         </c:if>
                     </c:if>
@@ -56,7 +56,7 @@
                     <input type="text" id="userId" value="로그인을 해주세요" style="width: 70%; height: 30%; border: none; font-size: 15px; background: rgba(233,233,233,0.17);" readonly/>
                 </c:if>
                 <c:if test="${authenticated}">
-                    <input type="text" id="userId" value="${principal.getName()}" style="width: 70%; height: 30%; border: none; font-size: 15px; background: rgba(233,233,233,0.17);" readonly/>
+                    <input type="text" id="userId" value="${principal.getUsername()}" style="width: 70%; height: 30%; border: none; font-size: 15px; background: rgba(233,233,233,0.17);" readonly/>
                 </c:if>
                 <button type="button" id="commentSubmit" onclick="comment_upload()" style="width: 28%; height: 30%; background: skyblue; font-size: 15px; background: rgba(233,233,233,0.17);">댓글 작성</button>
                 <textarea id="commentContents" placeholder="댓글을 작성하세요" style="width: 100%; height: 70%; resize: none; border: none; font-size: 20px; background: rgba(233,233,233,0.17); margin-top: 1%" maxlength="100"></textarea>
@@ -123,10 +123,10 @@
                     <input type="text" id="commentId_${comment.commentId}" style = "display: none;"/>
                     <input type="text" id="userId_${comment.commentId}" value="${comment.userId}" style="border: none; width: 50%; height: 60%; font-size: 12px; font-weight: bold; background: rgba(233,233,233,0.17)" readonly/>
                     <c:if test="${authenticated}">
-                        <c:if test="${comment.userId == principal.getName() || modify_anything}">
+                        <c:if test="${comment.userId == principal.getUsername() || modify_anything}">
                             <button type="button" id="commentEdit_${comment.commentId}" style="width: 23%; height: 60%; background: skyblue; font-size: 10px; background: rgba(233,233,233,0.17);">댓글 수정</button>
                         </c:if>
-                        <c:if test="${comment.userId == principal.getName() || delete_anything}">
+                        <c:if test="${comment.userId == principal.getUsername() || delete_anything}">
                             <button type="button" id="commentDelete_${comment.commentId}" style="width: 23%; height: 60%; background: skyblue; font-size: 10px; background: rgba(233,233,233,0.17);">댓글 삭제</button>
                         </c:if>
                     </c:if>

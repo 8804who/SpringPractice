@@ -35,11 +35,11 @@
             <span onclick="register()" style="margin-left: 20%">회원가입</span>
             <span>|</span>
             <span onclick="login()">로그인</span>
-            <img src="${pageContext.request.contextPath}/resources/img/anonymous.png" style="width: 50px; height: 50px">
+            <img src="${pageContext.request.contextPath}/resources/img/profile/anonymous.png" style="width: 50px; height: 50px">
         </sec:authorize>
 
         <sec:authorize access="isAuthenticated()">
-            <span>${principal.getName()}</span>
+            <span>${principal.getUsername()}</span>
             <span>|</span>
             <sec:authorize access="hasAuthority('user_management')">
                 <span onclick="userManagement()">회원 관리</span>

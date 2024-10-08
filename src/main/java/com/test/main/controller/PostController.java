@@ -1,11 +1,13 @@
 package com.test.main.controller;
 
 import com.test.main.dto.PostDto;
+import com.test.main.security.CustomUserDetails;
 import com.test.main.service.CommentService;
 import com.test.main.service.MetadataService;
 import com.test.main.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,22 +23,22 @@ public class PostController {
     private final MetadataService metadataService;
 
     @GetMapping("/read")
-    public String readPost(PostDto postDto, Model model, Principal principal) { // 게시글 페이지
-        model.addAttribute("principal", principal);
+    public String readPost(PostDto postDto, Model model, @AuthenticationPrincipal CustomUserDetails customUserDetails) { // 게시글 페이지
+        model.addAttribute("principal", customUserDetails);
         model.addAttribute("post", postService.read(postDto));
         model.addAttribute("commentList", commentService.list(postDto.getPostId()));
         return "read";
     }
     
     @GetMapping("/write")
-    public String writePost(Model model, Principal principal){ // 글 작성 페이지
-        model.addAttribute("principal", principal);
+    public String writePost(Model model, @AuthenticationPrincipal CustomUserDetails customUserDetails){ // 글 작성 페이지
+        model.addAttribute("principal", customUserDetails);
         return "write";
     }
 
     @GetMapping("/edit")
-    public String editPost(PostDto postDto, Model model, Principal principal){ // 글 수정 페이지
-        model.addAttribute("principal", principal);
+    public String editPost(PostDto postDto, Model model, @AuthenticationPrincipal CustomUserDetails customUserDetails){ // 글 수정 페이지
+        model.addAttribute("principal", customUserDetails);
         model.addAttribute("post", postService.read(postDto));
         return "edit";
     }

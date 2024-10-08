@@ -8,6 +8,7 @@ import com.test.main.service.ImageService;
 import com.test.main.service.MetadataService;
 import com.test.main.service.PostService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,8 +27,8 @@ public class MainController {
     private final ImageService imageService;
 
     @GetMapping("/")
-    public String readList(Model model, @RequestParam(required = false, defaultValue = "1") int page, Principal principal){ // 게시글 목록 페이지
-        model.addAttribute("principal", principal);
+    public String readList(Model model, @RequestParam(required = false, defaultValue = "1") int page, @AuthenticationPrincipal CustomUserDetails customUserDetails){ // 게시글 목록 페이지
+        model.addAttribute("principal", customUserDetails);
         List<PostDto> postDtoList = postService.list((page-1)*10);
         model.addAttribute("postList", postDtoList);
         model.addAttribute("postCount", metadataService.postCount().getPostCount());
