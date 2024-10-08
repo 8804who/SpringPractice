@@ -48,7 +48,14 @@
             <span onclick="userExit()">회원 탈퇴</span>
             <span>|</span>
             <span onclick="logout()">로그아웃</span>
-            <img src="${pageContext.request.contextPath}/resources/img/icon.png" style="width: 50px; height: 50px">
+            <c:choose>
+                <c:when test="${principal.getProfileImage() == null}">
+                    <img src="${pageContext.request.contextPath}/resources/img/profile/anonymous.png" style="width: 50px; height: 50px">
+                </c:when>
+                <c:otherwise>
+                    <img src="${pageContext.request.contextPath}/resources/img/profile/${principal.getProfileImage()}" style="width: 50px; height: 50px">
+                </c:otherwise>
+            </c:choose>
         </sec:authorize>
     </div>
 </body>
