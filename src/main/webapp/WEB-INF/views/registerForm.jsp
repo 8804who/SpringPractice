@@ -11,7 +11,7 @@
     <title>회원가입</title>
 <body>
 <div class="wrapper">
-    <form method="post" id="register" action="${pageContext.request.contextPath}/register" style="width: 100%; height: 100%">
+    <form method="post" id="register" action="${pageContext.request.contextPath}/register" enctype="multipart/form-data" style="width: 100%; height: 100%">
         <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}">
         <input type="text" name="userId" onkeydown="disableSubmit()" id="userId" placeholder="UserID" pattern=".*\S+.*" maxlength="10" required/>
         <button type="button" onclick="checkId()">중복 체크</button>

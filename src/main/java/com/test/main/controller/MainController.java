@@ -10,7 +10,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.security.Principal;
 import java.util.*;
 
@@ -47,9 +49,18 @@ public class MainController {
     }
 
     @PostMapping("/register")
-    public String register(CustomUserDetails customUserDetails){ //회원 등록
+    public String register(CustomUserDetails customUserDetails, MultipartFile profileImage){ //회원 등록
         customUserDetails.setPw(new BCryptPasswordEncoder().encode(customUserDetails.getPassword()));
         customUserDetailsService.register(customUserDetails);
+
+        String uploadPath = "C:\\Users\\user\\IdeaProjects\\board\\src\\main\\webapp\\resources\\img\\profile";
+        File saveFile = new File(uploadPath, profileImage.getOriginalFilename());
+
+        try {
+            profileImage.transferTo(saveFile);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
         return "redirect:/loginForm";
     }
 
