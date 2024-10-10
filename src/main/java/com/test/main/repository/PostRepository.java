@@ -22,6 +22,11 @@ public class PostRepository {
 
     public void update(PostDto postDto) { sql.update("Post.edit", postDto); }
 
+    public int countPost(String userId)
+    {
+        return sql.selectOne("Post.countPost", userId);
+    }
+
     public PostDto read(PostDto postDto) { return sql.selectOne("Post.read", postDto);}
 
     public List<PostDto> list(int startNumber) {

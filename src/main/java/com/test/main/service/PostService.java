@@ -23,6 +23,11 @@ public class PostService {
         postRepository.update(postDto);
     }
 
+    public int countPost(String userId)
+    {
+        return postRepository.countPost(userId);
+    }
+
     public PostDto read(PostDto postDto){
         return postRepository.read(postDto);
     }

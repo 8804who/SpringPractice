@@ -3,6 +3,8 @@ package com.test.main.security;
 import com.test.main.dto.AuthorityDto;
 import com.test.main.repository.AuthorityRepository;
 import com.test.main.repository.UserRepository;
+import com.test.main.service.MetadataService;
+import com.test.main.service.PostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
@@ -22,6 +24,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
     private final UserRepository userRepository;
+    private final PostService postService;
+    private final MetadataService metadataService;
     private final AuthorityRepository authorityRepository;
 
     @Override
@@ -73,7 +77,9 @@ public class CustomUserDetailsService implements UserDetailsService {
         }else{
             log.debug("파일삭제 성공");
         }
-    userRepository.userDelete(customUserDetails);
+        int countPost = postService.countPost(customUserDetails.getUserId());
+        metadataService.userDelete(countPost);
+        userRepository.userDelete(customUserDetails);
     }
 
     public void userActivate(CustomUserDetails customUserDetails)

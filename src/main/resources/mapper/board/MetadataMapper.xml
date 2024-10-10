@@ -11,6 +11,11 @@
         SET post_count = post_count-1
     </update>
 
+    <update id="userDelete" parameterType="int">
+        UPDATE metadata
+        SET post_count = post_count-#{postCount}
+    </update>
+
     <select id="postCount" resultType="metadata">
         SELECT post_count
         FROM metadata

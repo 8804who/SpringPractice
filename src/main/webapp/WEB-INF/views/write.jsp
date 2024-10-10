@@ -20,7 +20,7 @@
                 </div>
 
                 <div class="UserID">
-                    <input name="userId" type="text" maxlength="10" value="${principal.getName()}" style="border: none; width: 100%; height: 100%; font-size: 15px; background: rgba(233,233,233,0.17)" pattern=".*\S+.*" readonly required/>
+                    <input name="userId" type="text" maxlength="10" value="${principal.getUsername()}" style="border: none; width: 100%; height: 100%; font-size: 15px; background: rgba(233,233,233,0.17)" pattern=".*\S+.*" readonly required/>
                 </div>
 
                 <div class="Contents">

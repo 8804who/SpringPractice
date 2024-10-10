@@ -18,6 +18,10 @@ public class MetadataRepository {
         sql.update("Metadata.delete");
     }
 
+    public void userDelete(int postCount) {
+        sql.update("Metadata.userDelete", postCount);
+    }
+
     public MetadataDto postCount() {
         return sql.selectOne("Metadata.postCount");
     }
