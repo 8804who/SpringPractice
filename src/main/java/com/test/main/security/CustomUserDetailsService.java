@@ -4,6 +4,7 @@ import com.test.main.dto.AuthorityDto;
 import com.test.main.repository.AuthorityRepository;
 import com.test.main.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,9 +13,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
@@ -58,7 +61,19 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     public void userDelete(CustomUserDetails customUserDetails)
     {
-        userRepository.userDelete(customUserDetails);
+        String folderPath = "C:\\Users\\user\\IdeaProjects\\board\\src\\main\\webapp\\resources\\img\\profile\\";
+        String imagePath = userRepository.getProfileImage(customUserDetails);
+        File file = new File(folderPath+imagePath);
+        if(file.exists() ){
+            if(file.delete()){
+                log.debug("파일삭제 성공");
+            }else{
+                log.debug("파일삭제 성공");
+            }
+        }else{
+            log.debug("파일삭제 성공");
+        }
+    userRepository.userDelete(customUserDetails);
     }
 
     public void userActivate(CustomUserDetails customUserDetails)

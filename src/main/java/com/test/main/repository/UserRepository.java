@@ -33,6 +33,12 @@ public class UserRepository {
     public void userDelete(CustomUserDetails customUserDetails)
     {
         sql.delete("User.userDelete", customUserDetails);
+
+    }
+
+    public String getProfileImage(CustomUserDetails customUserDetails)
+    {
+        return sql.selectOne("User.getProfileImage", customUserDetails);
     }
 
     public void userActivate(CustomUserDetails customUserDetails){

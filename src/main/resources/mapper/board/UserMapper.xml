@@ -24,6 +24,12 @@
         WHERE user_id=#{userId}
     </select>
 
+    <select id="getProfileImage" parameterType="user" resultType="String">
+        SELECT profile_image
+        FROM user_table
+        WHERE user_id=#{userId}
+    </select>
+
     <select id="getUserList" resultType="user">
         SELECT user_id, user_role, enable
         FROM user_table
