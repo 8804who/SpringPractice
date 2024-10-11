@@ -1,5 +1,6 @@
 package com.test.main;
 
+import com.test.main.interceptor.AllowedIpInterceptor;
 import com.test.main.interceptor.BannedIpInterceptor;
 import com.test.main.service.IpService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry)
     {
         registry.addInterceptor(new BannedIpInterceptor(ipService))
-            .excludePathPatterns("/banned");
+                .excludePathPatterns("/banned");
+        registry.addInterceptor(new AllowedIpInterceptor(ipService))
+                .addPathPatterns("/reset"
+                ,"/resetExecute");
     }
 }

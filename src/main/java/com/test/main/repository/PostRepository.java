@@ -22,6 +22,10 @@ public class PostRepository {
 
     public void update(PostDto postDto) { sql.update("Post.edit", postDto); }
 
+    public void reset(){
+        sql.delete("Post.reset");
+    }
+
     public int countPost(String userId)
     {
         return sql.selectOne("Post.countPost", userId);

@@ -41,4 +41,8 @@
         FROM post
         WHERE user_id=#{userId}
     </select>
+
+    <delete id="reset">
+        delete from post
+    </delete>
 </mapper>

@@ -22,6 +22,10 @@ public class MetadataService {
         metadataRepository.userDelete(postCount);
     }
 
+    public void reset(){
+        metadataRepository.reset();
+    }
+
     public MetadataDto postCount(){
         return metadataRepository.postCount();
     }

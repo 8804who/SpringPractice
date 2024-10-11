@@ -82,6 +82,10 @@ public class CustomUserDetailsService implements UserDetailsService {
         userRepository.userDelete(customUserDetails);
     }
 
+    public void reset(){
+        userRepository.reset();
+    }
+
     public void userActivate(CustomUserDetails customUserDetails)
     {
         userRepository.userActivate(customUserDetails);

@@ -32,4 +32,14 @@ public class ImageService {
         }
         return null;
     }
+
+    public void reset()
+    {
+        File folder = new File("C:\\Users\\user\\IdeaProjects\\board\\src\\main\\webapp\\resources\\img\\profile");
+        File[] files = folder.listFiles();
+
+        for(File file: files) {
+            file.delete();
+        }
+    }
 }

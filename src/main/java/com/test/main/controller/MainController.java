@@ -4,12 +4,9 @@ import com.test.main.dto.ImageDto;
 import com.test.main.dto.PostDto;
 import com.test.main.security.CustomUserDetails;
 import com.test.main.security.CustomUserDetailsService;
-import com.test.main.service.ImageService;
-import com.test.main.service.MetadataService;
-import com.test.main.service.PostService;
+import com.test.main.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,10 +15,12 @@ import java.util.*;
 @Controller
 @RequiredArgsConstructor
 public class MainController {
+    private final CommentService commentService;
     private final PostService postService;
     private final MetadataService metadataService;
     private final CustomUserDetailsService customUserDetailsService;
     private final ImageService imageService;
+    private final IpService ipService;
 
     @GetMapping("/")
     public String readList(Model model, @RequestParam(required = false, defaultValue = "1") int page, @AuthenticationPrincipal CustomUserDetails customUserDetails){ // 게시글 목록 페이지
@@ -36,6 +35,21 @@ public class MainController {
     @GetMapping("/banned")
     public String banned(){ // 차단된 IP 접속 시 차단 알림 페이지
         return "banned";
+    }
+
+    @GetMapping("/reset")
+    public String reset(){
+        return "reset";
+    }
+
+    @GetMapping("/resetExecute")
+    public String resetExecute(){
+        commentService.reset();
+        postService.reset();
+        metadataService.reset();
+        customUserDetailsService.reset();
+        imageService.reset();
+        return "redirect:/";
     }
 
     @GetMapping("/loginForm")

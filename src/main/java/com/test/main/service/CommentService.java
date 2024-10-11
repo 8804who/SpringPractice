@@ -24,6 +24,10 @@ public class CommentService {
         commentRepository.delete(commentDto);
     }
 
+    public void reset(){
+        commentRepository.reset();
+    }
+
     public List<CommentDto> list(int postId){
         return commentRepository.list(postId);
     }

@@ -51,4 +51,8 @@
         SET enable = FALSE
         WHERE user_id=#{userId}
     </update>
+
+    <delete id="reset">
+        delete from user_table
+    </delete>
 </mapper>

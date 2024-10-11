@@ -22,6 +22,10 @@ public class CommentRepository {
 
     public void update(CommentDto commentDto) { sql.update("Comment.edit", commentDto); }
 
+    public void reset(){
+        sql.delete("Comment.reset");
+    }
+
     public List<CommentDto> list(int postId) {
         return sql.selectList("Comment.list", postId);
     }

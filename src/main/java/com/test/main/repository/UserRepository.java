@@ -36,6 +36,10 @@ public class UserRepository {
 
     }
 
+    public void reset(){
+        sql.delete("User.reset");
+    }
+
     public String getProfileImage(CustomUserDetails customUserDetails)
     {
         return sql.selectOne("User.getProfileImage", customUserDetails);

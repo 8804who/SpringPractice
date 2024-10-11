@@ -23,4 +23,8 @@
         WHERE post_id = #{postId}
         ORDER BY comment_id
     </select>
+
+    <delete id="reset">
+        delete from comment
+    </delete>
 </mapper>

@@ -8,6 +8,11 @@
     <title>사이트 초기화</title>
 </head>
 <body>
-    <button>누르지마세요</button>
+    <button onclick=reset()>누르지마세요</button>
+    <script>
+        function reset(){
+            location.href = "/resetExecute";
+        }
+    </script>
 </body>
 </html>

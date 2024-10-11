@@ -20,4 +20,9 @@
         SELECT post_count
         FROM metadata
     </select>
+
+    <delete id="reset">
+        UPDATE metadata
+        SET post_count = 0
+    </delete>
 </mapper>

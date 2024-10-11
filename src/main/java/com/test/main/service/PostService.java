@@ -28,6 +28,10 @@ public class PostService {
         return postRepository.countPost(userId);
     }
 
+    public void reset(){
+        postRepository.reset();
+    }
+
     public PostDto read(PostDto postDto){
         return postRepository.read(postDto);
     }
