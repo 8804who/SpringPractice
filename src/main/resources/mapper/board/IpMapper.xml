@@ -6,4 +6,10 @@
         from banned_ip
         where ip_address = #{ipAddress}
     </select>
+
+    <select id="ipAllowCheck" resultType="boolean">
+        select count(ip_address)
+        from allowed_ip
+        where ip_address = #{ipAddress}
+    </select>
 </mapper>

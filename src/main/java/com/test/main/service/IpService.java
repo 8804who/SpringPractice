@@ -17,4 +17,8 @@ public class IpService {
     public boolean ipBanCheck(String ipAddress){
         return ipRepository.ipBanCheck(ipAddress);
     }
+
+    public boolean ipAllowCheck(String ipAddress) {
+        return ipRepository.ipAllowCheck(ipAddress);
+    }
 }

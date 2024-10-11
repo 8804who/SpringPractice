@@ -17,4 +17,8 @@ public class IpRepository {
     public boolean ipBanCheck(String ipAddress) {
         return sql.selectOne("Ip.ipBanCheck", ipAddress);
     }
+
+    public boolean ipAllowCheck(String ipAddress) {
+        return sql.selectOne("Ip.ipAllowCheck", ipAddress);
+    }
 }
