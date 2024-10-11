@@ -10,6 +10,8 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 @Controller
@@ -43,13 +45,16 @@ public class MainController {
     }
 
     @GetMapping("/resetExecute")
-    public String resetExecute(){
+    public String resetExecute(HttpServletRequest request){
         commentService.reset();
         postService.reset();
         metadataService.reset();
         customUserDetailsService.reset();
         imageService.reset();
-        return "redirect:/";
+
+        request.setAttribute("msg", "모두 다 사라졌습니다");
+        request.setAttribute("url", "/");
+        return "alert";
     }
 
     @GetMapping("/loginForm")
