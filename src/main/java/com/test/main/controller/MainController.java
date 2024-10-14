@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.*;
 
 @Controller
@@ -22,7 +23,6 @@ public class MainController {
     private final MetadataService metadataService;
     private final CustomUserDetailsService customUserDetailsService;
     private final ImageService imageService;
-    private final IpService ipService;
 
     @GetMapping("/")
     public String readList(Model model, @RequestParam(required = false, defaultValue = "1") int page, @AuthenticationPrincipal CustomUserDetails customUserDetails){ // 게시글 목록 페이지
@@ -39,13 +39,13 @@ public class MainController {
         return "banned";
     }
 
-    @GetMapping("/reset")
-    public String reset(){
+    @GetMapping("/reset") 
+    public String reset(){ // 초기화 페이지
         return "reset";
     }
 
     @GetMapping("/resetExecute")
-    public String resetExecute(HttpServletRequest request){
+    public String resetExecute(HttpServletRequest request){ // 초기화
         commentService.reset();
         postService.reset();
         metadataService.reset();
@@ -68,7 +68,14 @@ public class MainController {
     }
 
     @PostMapping("/register")
-    public String register(CustomUserDetails customUserDetails, ImageDto image){ //회원 등록
+    public String register(CustomUserDetails customUserDetails, ImageDto image, HttpServletRequest request) throws IOException { //회원 등록
+        if (!imageService.isFileValid(image))
+        {
+            request.setAttribute("msg", "첨부 파일의 형식이 올바르지 않습니다.");
+            request.setAttribute("url", "/registerForm");
+            return "alert";
+        }
+
         customUserDetailsService.register(customUserDetails, imageService.imageUpload(image));
         return "redirect:/loginForm";
     }
