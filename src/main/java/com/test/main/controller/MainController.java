@@ -69,7 +69,7 @@ public class MainController {
 
     @PostMapping("/register")
     public String register(CustomUserDetails customUserDetails, ImageDto image, HttpServletRequest request) throws IOException { //회원 등록
-        if (!imageService.isFileValid(image))
+        if (!image.getImage().isEmpty() && !imageService.isFileValid(image))
         {
             request.setAttribute("msg", "첨부 파일의 형식이 올바르지 않습니다.");
             request.setAttribute("url", "/registerForm");
