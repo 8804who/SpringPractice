@@ -16,5 +16,7 @@
         <typeAlias type="com.test.main.dto.CommentDto" alias="comment"></typeAlias>
         <typeAlias type="com.test.main.security.CustomUserDetails" alias="user"></typeAlias>
         <typeAlias type="com.test.main.dto.AuthorityDto" alias="authority"></typeAlias>
+        <typeAlias type="com.test.main.dto.LogDto" alias="log"></typeAlias>
+        <typeAlias type="com.test.main.dto.PageInfoDto" alias="pageInfo"></typeAlias>
     </typeAliases>
 </configuration>
