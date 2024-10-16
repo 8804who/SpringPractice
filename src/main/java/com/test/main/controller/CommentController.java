@@ -8,23 +8,22 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping(value = "/comment")
 public class CommentController {
     private final CommentService commentService;
 
-    @PostMapping("/upload")
+    @PostMapping("/comment/upload")
     public @ResponseBody String uploadComment(@RequestBody CommentDto commentDto){ // 댓글 업로드
         commentService.upload(commentDto);
         return null;
     }
 
-    @PostMapping("/update")
+    @PostMapping("/comment/update")
     public @ResponseBody String updateComment(@RequestBody CommentDto commentDto){ // 댓글 수정
         commentService.update(commentDto);
         return null;
     }
 
-    @PostMapping("/delete")
+    @PostMapping("/comment/delete")
     public @ResponseBody String deleteComment(@RequestBody CommentDto commentDto){ // 댓글 삭제
         commentService.delete(commentDto);
         return null;

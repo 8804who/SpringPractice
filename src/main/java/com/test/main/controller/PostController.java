@@ -14,13 +14,12 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping(value = "/post")
 public class PostController {
     private final CommentService commentService;
     private final PostService postService;
     private final MetadataService metadataService;
 
-    @GetMapping("/read")
+    @GetMapping("/post/read")
     public String readPost(PostDto postDto, Model model, @AuthenticationPrincipal CustomUserDetails customUserDetails) { // 게시글 페이지
         model.addAttribute("principal", customUserDetails);
         model.addAttribute("post", postService.read(postDto));
@@ -28,20 +27,20 @@ public class PostController {
         return "read";
     }
     
-    @GetMapping("/write")
+    @GetMapping("/post/write")
     public String writePost(Model model, @AuthenticationPrincipal CustomUserDetails customUserDetails){ // 글 작성 페이지
         model.addAttribute("principal", customUserDetails);
         return "write";
     }
 
-    @GetMapping("/edit")
+    @GetMapping("/post/edit")
     public String editPost(PostDto postDto, Model model, @AuthenticationPrincipal CustomUserDetails customUserDetails){ // 글 수정 페이지
         model.addAttribute("principal", customUserDetails);
         model.addAttribute("post", postService.read(postDto));
         return "edit";
     }
 
-    @PostMapping("/upload")
+    @PostMapping("/post/upload")
     public String uploadPost(PostDto postDto){ // 글 업로드
         postService.upload(postDto);
         metadataService.upload();
@@ -49,14 +48,14 @@ public class PostController {
     }
 
     @PreAuthorize("hasAuthority('modify_anything') or #postDto.userId == principal.userId")
-    @PostMapping("/update")
+    @PostMapping("/post/update")
     public String updatePost(PostDto postDto){ // 글 수정
         postService.update(postDto);
         return "redirect:/post/read?postId="+postDto.getPostId();
     }
 
     @PreAuthorize("hasAuthority('delete_anything') or #postDto.userId == principal.userId")
-    @PostMapping("/delete")
+    @PostMapping("/post/delete")
     public String deletePost(PostDto postDto){ // 글 삭제
         postService.delete(postDto);
         metadataService.delete();
