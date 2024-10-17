@@ -1,7 +1,9 @@
 package com.test.main.controller;
 
+import com.test.main.repository.BlockedUserRepository;
 import com.test.main.security.CustomUserDetails;
 import com.test.main.security.CustomUserDetailsService;
+import com.test.main.service.BlockedUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequiredArgsConstructor
 public class UserManagementController {
+    private final BlockedUserService blockedUserService;
     private final CustomUserDetailsService customUserDetailsService;
 
     @GetMapping("/userManagement")
@@ -47,6 +50,12 @@ public class UserManagementController {
     @PostMapping("/userDeactivate")
     public String userDeactivate(CustomUserDetails customUserDetails) { // 계정 활성화
         customUserDetailsService.userDeactivate(customUserDetails);
+        return "redirect:/userManagement";
+    }
+
+    @PostMapping("/blockUser")
+    public String blockUser(CustomUserDetails customUserDetails) {
+        blockedUserService.blockUser(customUserDetails);
         return "redirect:/userManagement";
     }
 }

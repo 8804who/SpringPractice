@@ -34,6 +34,13 @@ public class MainController {
         return "list";
     }
 
+    @GetMapping("/blocked")
+    public String blocked(HttpServletRequest request){
+        request.setAttribute("msg", "활동 정지 기간입니다.");
+        request.setAttribute("url", "/");
+        return "alert";
+    }
+
     @GetMapping("/banned")
     public String banned(){ // 차단된 IP 접속 시 차단 알림 페이지
         return "banned";
