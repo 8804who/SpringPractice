@@ -35,6 +35,7 @@
                         <td style="width: 30%; height: 5%; text-align: center;">
                             <form method="post">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                                <input type="hidden" name="userNum" value="${userInfo.userNum}">
                                 <input type="hidden" name="userId" value="${userInfo.userId}">
                                 <c:if test="${userInfo.enable}">
                                     <button type="submit" formaction="/userDeactivate" style="text-align: center; font-size: 20px; display :inline-block;">계정 비활성화</button>

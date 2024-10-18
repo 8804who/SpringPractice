@@ -31,7 +31,7 @@
     </select>
 
     <select id="getUserList" resultType="user">
-        SELECT user_id, user_role, enable
+        SELECT user_num, user_id, user_role, enable
         FROM user_table
     </select>
 
