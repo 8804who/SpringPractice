@@ -15,6 +15,7 @@
         <div class="Post" style="width: 100%; height: 80%">
             <form method="post" id="upload" action="${pageContext.request.contextPath}/post/upload" style="width: 100%; height: 100%">
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"> <%-- csrf 토큰 --%>
+                <input type="hidden" name="userNum" value="${principal.getUserNum()}">
                 <div class="Title">
                     <input name="postTitle" type="text" maxlength="50" placeholder="제목을 입력하세요." style="border: none; width: 100%; height: 100%; font-size: 30px; font-weight: bold; background: rgba(233,233,233,0.17)" pattern=".*\S+.*" required/>
                 </div>

@@ -57,6 +57,7 @@
                 </c:if>
                 <c:if test="${authenticated}">
                     <input type="text" id="userId" value="${principal.getUsername()}" style="width: 70%; height: 30%; border: none; font-size: 15px; background: rgba(233,233,233,0.17);" readonly/>
+                    <input type="hidden" id="userNum" value="${principal.getUserNum()}">
                 </c:if>
                 <button type="button" id="commentSubmit" onclick="comment_upload()" style="width: 28%; height: 30%; background: skyblue; font-size: 15px; background: rgba(233,233,233,0.17);">댓글 작성</button>
                 <textarea id="commentContents" placeholder="댓글을 작성하세요" style="width: 100%; height: 70%; resize: none; border: none; font-size: 20px; background: rgba(233,233,233,0.17); margin-top: 1%" maxlength="100"></textarea>
@@ -167,7 +168,7 @@
                 return false;
             }
 
-            var data = {userId:$('#userId').val(), commentContents:$('#commentContents').val(), postId:$('#postId').val()}
+            var data = {userNum:$('#userNum').val(), userId:$('#userId').val(), commentContents:$('#commentContents').val(), postId:$('#postId').val()}
 
             $.ajax({
                 url:"/comment/upload",

@@ -12,6 +12,7 @@ import java.util.List;
 @Setter
 @ToString
 public class CustomUserDetails implements UserDetails {
+    private int userNum;
     private String userId;
     private String pw;
     private String userRole;
@@ -22,6 +23,10 @@ public class CustomUserDetails implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.authList;
+    }
+
+    public int getUserNum(){
+        return userNum;
     }
 
     @Override

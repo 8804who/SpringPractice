@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Post">
     <insert id="upload" parameterType="post">
-        INSERT INTO post(post_title, user_id, post_contents)
-        VALUES (#{postTitle}, #{userId}, #{postContents})
+        INSERT INTO post(post_title, user_num, user_id, post_contents)
+        VALUES (#{postTitle}, #{userNum}, #{userId}, #{postContents})
     </insert>
 
     <update id="edit" parameterType="post">

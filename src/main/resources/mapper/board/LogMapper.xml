@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Log">
     <insert id="saveLog" parameterType="log">
-        INSERT INTO log_table(log_dt, user_id, user_ip, page_num, page_name, page_url, page_dc)
-        VALUES(#{logDt}, #{userId}, #{userIp}, #{pageNum}, #{pageName}, #{pageUrl}, #{pageDc})
+        INSERT INTO log_table(log_dt, user_num, user_id, user_ip, page_num, page_name, page_url, page_dc)
+        SELECT #{logDt}, user_num, #{userId}, #{userIp}, #{pageNum}, #{pageName}, #{pageUrl}, #{pageDc} FROM user_table WHERE user_table.user_id = #{userId}
     </insert>
 </mapper>

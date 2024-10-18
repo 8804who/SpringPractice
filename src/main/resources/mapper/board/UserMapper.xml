@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="User">
     <select id="getUserById" resultType="user">
-        SELECT user_id, pw, user_role, enable, profile_image
+        SELECT user_num, user_id, pw, user_role, enable, profile_image
         FROM user_table
         WHERE user_id = #{userId}
     </select>

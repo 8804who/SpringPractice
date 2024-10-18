@@ -9,6 +9,7 @@ import lombok.ToString;
 @ToString
 public class PostDto {
     private String postTitle;
+    private int userNum;
     private String userId;
     private int postId;
     private String postContents;

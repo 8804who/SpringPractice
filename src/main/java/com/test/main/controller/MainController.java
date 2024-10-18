@@ -23,6 +23,7 @@ public class MainController {
     private final MetadataService metadataService;
     private final CustomUserDetailsService customUserDetailsService;
     private final ImageService imageService;
+    private final BlockedUserService blockedUserService;
 
     @GetMapping("/")
     public String readList(Model model, @RequestParam(required = false, defaultValue = "1") int page, @AuthenticationPrincipal CustomUserDetails customUserDetails){ // 게시글 목록 페이지
@@ -35,8 +36,9 @@ public class MainController {
     }
 
     @GetMapping("/blocked")
-    public String blocked(HttpServletRequest request){
-        request.setAttribute("msg", "활동 정지 기간입니다.");
+    public String blocked(HttpServletRequest request, @AuthenticationPrincipal CustomUserDetails customUserDetails){
+
+        request.setAttribute("msg", blockedUserService.whenIsReleaseDate(customUserDetails.getUserId())+"까지 활동 정지 기간입니다.");
         request.setAttribute("url", "/");
         return "alert";
     }
