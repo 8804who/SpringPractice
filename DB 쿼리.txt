@@ -1,0 +1,232 @@
+게시글 테이블 생성 쿼리
+CREATE TABLE post(
+	post_title VARCHAR(50) NOT NULL,
+	user_num int NOT NULL,
+	user_id VARCHAR(10) NOT NULL,
+	post_id SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	post_contents VARCHAR(1000) NOT NULL,
+	FOREIGN KEY (user_id) REFERENCES user_table(user_id)  ON UPDATE CASCADE
+);
+
+게시글 테이블 데이터 추가 쿼리(upload)
+INSERT INTO post(post_title, user_id, post_contents) 
+VALUES (#{postTitle}, #{userId}, #{postContents})
+
+게시글 목록 조회 쿼리(list)
+SELECT * FROM post AS P
+JOIN(
+	SELECT post_id
+	FROM post
+	ORDER BY post_id DESC
+	LIMIT #{startNumber}, 10
+) AS TEMP
+ON TEMP.post_id = P.post_id
+
+게시글 내용 조회 쿼리(read)
+SELECT post_title, user_num, user_id, post_id, post_contents 
+FROM post
+WHERE post_id = #{postId}
+
+게시글 수정 쿼리(edit)
+UPDATE posts
+SET post_title = #{postTitle}, post_contents = #{postContents}
+WHERE post_id = #{postId}
+
+게시글 삭제 쿼리(delete)
+DELETE FROM post 
+WHERE post_id = #{postId}
+
+postId AUTO_INCREMENT 초기화(테이블에 설정값보다 높은 postId가 존재하면 적용 안 됨)
+ALTER TABLE post AUTO_INCREMENT=1
+
+유저 게시글 수 조회 쿼리
+SELECT COUNT(post_id)
+FROM post
+WHERE user_id=#{userId}
+    
+___________________________________________________________________________________________
+댓글 테이블 생성 쿼리
+CREATE TABLE comment(
+	comment_id MEDIUMINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	user_num int NOT NULL,	
+	user_id VARCHAR(10) NOT NULL,
+	post_id SMALLINT UNSIGNED, 
+	comment_contents VARCHAR(100) NOT NULL,
+	FOREIGN KEY (post_id) REFERENCES post(post_id) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (user_id) REFERENCES user_table(user_id)  ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+댓글 생성 쿼리
+INSERT INTO comment(user_id, user_num, post_id, comment_contents)
+VALUES(#{userId}, #{user_num} #{postId},#{commentContents})
+
+댓글 수정 쿼리
+UPDATE comment
+SET comment_contents = #{commentContents}
+WHERE comment_id = #{commentId}
+
+댓글 삭제 쿼리
+DELETE FROM comment
+WHERE comment_id = #{commentId}
+
+댓글 조회 쿼리
+SELECT comment_id, user_num, user_id, comment_contents
+FROM comment
+WHERE post_id = #{postId}
+ORDER BY comment_id
+___________________________________________________________________________________________
+메타 데이터 테이블 생성 쿼리
+CREATE TABLE metadata(
+	post_count SMALLINT UNSIGNED PRIMARY KEY
+);
+
+게시글 생성 시 post_count 업데이트 쿼리
+UPDATE metadata
+SET post_count = post_count+1
+
+게시글 삭제 시 post_count 업데이트 쿼리
+UPDATE metadata
+SET post_count = post_count-1
+
+유저 탈퇴 시 post_count 업데이트 쿼리
+UPDATE metadata
+SET post_count = post_count-#{postCount}
+___________________________________________________________________________________________
+유저 테이블 생성 쿼리
+CREATE TABLE user_table(
+	user_num INT PRIMARY KEY AUTO_INCREMENT,
+	user_id VARCHAR(10) UNIQUE,
+	pw VARCHAR(100) NOT NULL,
+	user_role VARCHAR(10)	 NOT NULL	,
+	enable BOOLEAN NOT NULL DEFAULT TRUE,
+	profile_image VARCHAR(100),
+	FOREIGN KEY (user_role) REFERENCES role_table(role_name) ON UPDATE CASCADE
+);
+
+유저 등록 쿼리
+INSERT INTO user_table(user_id, pw, role, profile_image)
+VALUES(#{userId}, #{password}, #{userRole}, #{profileImage})
+
+유저 탈퇴 쿼리
+DELETE FROM user_table
+WHERE user_id=#{userId}
+
+유저 정보 조회 쿼리
+SELECT user_num, user_id, pw, user_role, enable, profile_image 
+FROM user_table
+WHERE user_id=#{userId}
+
+유저 계정 활성화 쿼리
+UPDATE user_table
+SET enable = TRUE
+WHERE user_id=#{userId}
+
+유저 계정 비활성화 쿼리
+UPDATE user_table
+SET enable = FALSE
+WHERE user_id=#{userId}
+
+ID 중복 확인 쿼리
+SELECT COUNT(*)
+FROM user_table
+WHERE user_id=#{userId}
+
+비밀번호 조회 쿼리
+SELECT pw
+FROM user_table
+WHERE user_id=#{userId}
+___________________________________________________________________________________________
+역할 테이블 생성 쿼리
+CREATE TABLE role_table(
+	role_name VARCHAR(10) PRIMARY KEY,
+	role_level TINYINT NOT NULL UNIQUE
+);
+
+역할 등록 쿼리
+INSERT INTO role_table(role_name, role_level)
+VALUES(#{roleName}, #{roleLevel})
+___________________________________________________________________________________________
+권한 테이블 생성 쿼리
+CREATE TABLE authority(
+	authority_name VARCHAR(20) PRIMARY KEY,
+	authority_level TINYINT NOT NULL,
+	FOREIGN KEY (authority_level) REFERENCES role_table(role_level)  ON UPDATE CASCADE
+);
+
+권한 조회 쿼리
+select authority_name
+from authority
+where authority_level <= (
+	select role_level
+	from role_table
+	where role_name = #{userRole}
+)
+___________________________________________________________________________________________
+차단 IP 테이블 생성 쿼리
+CREATE TABLE banned_ip(
+	ip_address VARCHAR(16) PRIMARY KEY
+);
+
+IP 조회 쿼리
+select count(ip_address)
+from banned_ip
+where ip_address = #{ipAddress}
+
+차단 IP 등록 쿼리
+INSERT INTO banned_ip(ip_address)
+VALUES (#{ipAddress})
+
+___________________________________________________________________________________________
+초기화 페이지 접근 IP 테이블 생성 쿼리
+CREATE TABLE allowed_ip (
+  ip_address varchar(16) NOT null primary KEY
+)
+
+IP 조회 쿼리
+select count(ip_address)
+from allowed_ip
+where ip_address = #{ipAddress}
+
+___________________________________________________________________________________________
+페이지 정보 테이블 생성 쿼리
+CREAE TABLE page_info (
+	page_num int(11) auto_increment,
+	page_name varchar(20) not null,
+	page_url varchar(200) default null,
+	page_dc varchar(200) default null,
+	primary key(page_num)
+)
+
+페이지 정보 조회 쿼리
+SELECT page_num, page_name, page_url, page_dc
+FROM page_info
+WHERE page_url = #{pageUrl}
+___________________________________________________________________________________________
+로그 정보 테이블 생성 쿼리
+CREATE TABLE log_table (
+	log_num int auto_increment,
+	log_dt datetime,
+	user_num int,
+	user_id varchar(100),
+	user_ip varchar(100),
+	page_num int,
+	page_name varchar(20),
+	page_url varchar(200),
+	page_dc varchar(200),
+	PRIMARY KEY(log_num)
+)
+
+로그 정보 기록 쿼리
+INSERT INTO log_table(log_dt, user_num, user_id, user_ip, page_num, page_name, page_url, page_dc)
+VALUES(#{logDt}, #{user_num}, #{userId}, #{userIp}, #{pageNum}, #{pageName}, #{pageUrl}, #{pageDc})
+___________________________________________________________________________________________
+유저 활동 정지 정보 테이블 생성 쿼리
+CREATE TABLE blocked_user_table (
+ 	block_num int(11) NOT NULL AUTO_INCREMENT,
+	user_num int NOT NULL,
+  	user_id varchar(10) NOT NULL,
+  	blocked_date datetime DEFAULT NULL,
+  	release_date datetime DEFAULT NULL,
+ 	PRIMARY KEY (`block_num`),
+	FOREIGN KEY (user_id) REFERENCES user_table(user_id)   ON DELETE CASCADE ON UPDATE CASCADE
+)
